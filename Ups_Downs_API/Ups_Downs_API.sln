@@ -1,0 +1,45 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ups_Downs_API.AppHost", "Ups_Downs_API.AppHost\Ups_Downs_API.AppHost.csproj", "{7A22E1AC-861A-4878-A286-6259152BD843}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ups_Downs_API.ServiceDefaults", "Ups_Downs_API.ServiceDefaults\Ups_Downs_API.ServiceDefaults.csproj", "{29F9F9F1-1BBA-4031-9859-520C086CC2B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ups_Downs_API.ApiService", "Ups_Downs_API.ApiService\Ups_Downs_API.ApiService.csproj", "{8AA9C1BA-51A3-4910-9778-6E455E206732}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ups_Downs_API.Web", "Ups_Downs_API.Web\Ups_Downs_API.Web.csproj", "{13AC501D-68BD-46D2-8531-136D8326CDF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ups_Downs_API.Tests", "Ups_Downs_API.Tests\Ups_Downs_API.Tests.csproj", "{CA8BE9E0-20AF-4F5B-AE47-B1BE55D3FE2A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A22E1AC-861A-4878-A286-6259152BD843}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A22E1AC-861A-4878-A286-6259152BD843}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A22E1AC-861A-4878-A286-6259152BD843}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A22E1AC-861A-4878-A286-6259152BD843}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29F9F9F1-1BBA-4031-9859-520C086CC2B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29F9F9F1-1BBA-4031-9859-520C086CC2B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29F9F9F1-1BBA-4031-9859-520C086CC2B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29F9F9F1-1BBA-4031-9859-520C086CC2B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AA9C1BA-51A3-4910-9778-6E455E206732}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AA9C1BA-51A3-4910-9778-6E455E206732}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AA9C1BA-51A3-4910-9778-6E455E206732}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AA9C1BA-51A3-4910-9778-6E455E206732}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13AC501D-68BD-46D2-8531-136D8326CDF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13AC501D-68BD-46D2-8531-136D8326CDF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13AC501D-68BD-46D2-8531-136D8326CDF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13AC501D-68BD-46D2-8531-136D8326CDF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA8BE9E0-20AF-4F5B-AE47-B1BE55D3FE2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA8BE9E0-20AF-4F5B-AE47-B1BE55D3FE2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA8BE9E0-20AF-4F5B-AE47-B1BE55D3FE2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA8BE9E0-20AF-4F5B-AE47-B1BE55D3FE2A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
