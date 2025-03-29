@@ -5,15 +5,29 @@
 
 <h1>Counter</h1>
 
-<p role="status">Current count: @currentCount</p>
+<p>API Response: @responseMessage</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
-    private int currentCount = 0;
+    
+    private string responseMessage = "";
 
-    private void IncrementCount()
+    [Inject]
+    private HttpClient _httpClient { get; set; }
+
+    private async Task IncrementCount()
     {
-        currentCount++;
+        try
+        {
+            // Make a GET request to your API
+            responseMessage = await _httpClient.GetStringAsync("https://localhost:7466/counter");
+
+        }
+        catch (Exception ex)
+        {
+            // Handle error if the request fails
+            responseMessage = $"Error: {ex.Message}";
+        }
     }
 }

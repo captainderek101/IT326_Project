@@ -1,4 +1,6 @@
+Console.WriteLine("Hello From api host");
 var builder = DistributedApplication.CreateBuilder(args);
+
 
 var apiService = builder.AddProject<Projects.Ups_Downs_API_ApiService>("apiservice");
 
