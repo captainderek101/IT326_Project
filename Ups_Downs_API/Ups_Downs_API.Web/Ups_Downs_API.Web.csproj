@@ -10,4 +10,7 @@
     <ProjectReference Include="..\Ups_Downs_API.ServiceDefaults\Ups_Downs_API.ServiceDefaults.csproj" />
   </ItemGroup>
 
+    <ItemGroup>
+	    <ProjectReference Include="..\Library\Library.csproj" />
+    </ItemGroup>
 </Project>

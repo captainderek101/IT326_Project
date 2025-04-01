@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Ups_Downs_API.ApiService\Ups_Downs_API.ApiService.csproj" />
     <ProjectReference Include="..\Ups_Downs_API.Web\Ups_Downs_API.Web.csproj" />
+	<ProjectReference Include="..\Library\Library.csproj" />
   </ItemGroup>
 
   <ItemGroup>

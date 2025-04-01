@@ -14,4 +14,7 @@
     <Folder Include="NewFolder\" />
   </ItemGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\Library\Library.csproj" />
+	</ItemGroup>
 </Project>

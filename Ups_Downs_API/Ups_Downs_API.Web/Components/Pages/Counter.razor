@@ -5,29 +5,46 @@
 
 <h1>Counter</h1>
 
-<p>API Response: @responseMessage</p>
+<button class="btn btn-primary" @onclick="CallRequest">HTTP Request Test</button>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<p>API Response: @requestResponse</p>
 
+<button class="btn btn-primary" @onclick="CallPost">HTTP Post Test</button>
+
+<p>API Response: @postResponse</p>
 @code {
-    
-    private string responseMessage = "";
+    private string requestResponse = "";
+
+    private string postResponse = "";
 
     [Inject]
     private HttpClient _httpClient { get; set; }
 
-    private async Task IncrementCount()
+    private async Task CallRequest()
     {
-        try
-        {
-            // Make a GET request to your API
-            responseMessage = await _httpClient.GetStringAsync("https://localhost:7466/counter");
 
-        }
-        catch (Exception ex)
-        {
-            // Handle error if the request fails
-            responseMessage = $"Error: {ex.Message}";
-        }
+        //create an object
+
+
+
+        // Make a GET request to your API
+        requestResponse = await _httpClient.GetStringAsync("https://localhost:7466/counter");
+
     }
+
+    private async Task CallPost()
+    {
+
+        //create an object
+        var myPostObject = new Library.PostObject("test message sent using http Post request");
+
+        // Serialize the object to JSON
+        var json = System.Text.Json.JsonSerializer.Serialize(myPostObject);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+        // Send the POST request
+        var response = await _httpClient.PostAsync("https://localhost:7466/counter", content);
+        postResponse = await response.Content.ReadAsStringAsync();
+    }
+
 }
