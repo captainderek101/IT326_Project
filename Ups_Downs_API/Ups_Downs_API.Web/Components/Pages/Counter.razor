@@ -1,6 +1,8 @@
 ﻿@page "/counter"
 @rendermode InteractiveServer
 
+@inject WeatherApiClient WeatherApi
+
 <PageTitle>Counter</PageTitle>
 
 <h1>Counter</h1>
@@ -9,11 +11,29 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+<p>Names in DB: @names</p>
+
+<button class="btn btn-primary" @onclick="ConnectToDB">Load DB</button>
+
+<button class="btn btn-primary" @onclick="AddToDB">Add entry to DB</button>
+
 @code {
+
     private int currentCount = 0;
+    private string names = "";
 
     private void IncrementCount()
     {
         currentCount++;
+    }
+
+    private void ConnectToDB()
+    {
+        names = WeatherApi.ConnectToDB();
+    }
+
+    private void AddToDB()
+    {
+        WeatherApi.AddDBEntry();
     }
 }

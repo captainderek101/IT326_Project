@@ -7,10 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ups_Downs_API.ServiceDefaults\Ups_Downs_API.ServiceDefaults.csproj" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Ups_Downs_API.ServiceDefaults\Ups_Downs_API.ServiceDefaults.csproj" />
   </ItemGroup>
 
 </Project>
