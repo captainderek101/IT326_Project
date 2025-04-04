@@ -5,10 +5,11 @@ using Library;
 namespace Ups_Downs_API.ApiService.Controllers
 {
     [ApiController]
+    [Route("counter")]
     public class CounterController : ControllerBase
     {
         // This will now respond to GET requests from/counter: https://localhost:7466/counter
-        [HttpGet("/counter")]
+        [HttpGet]
         public IActionResult Get()
         {
             //retrieve databse info
@@ -20,7 +21,7 @@ namespace Ups_Downs_API.ApiService.Controllers
 
 
         //post request accessed from https://localhost:7466/post
-        [HttpPost("/counter")]
+        [HttpPost]
         public IActionResult Post([FromBody] Library.PostObject receivedObject)
         {
 
@@ -35,4 +36,3 @@ namespace Ups_Downs_API.ApiService.Controllers
         }
     }
 }
-
