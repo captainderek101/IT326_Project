@@ -1,3 +1,5 @@
+using Ups_Downs_API.ApiService.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 Console.WriteLine("Hello from ups and downs api service");
@@ -9,7 +11,12 @@ builder.AddServiceDefaults();
 builder.Services.AddProblemDetails();
 
 // Register controllers
-builder.Services.AddControllers(); 
+builder.Services.AddControllers();
+
+// Sample service file below - registering for dependency injection
+builder.Services.AddScoped<SkeletonService>();
+// Examples of some what another service file can look like
+builder.Services.AddScoped<someOtherServiceFile>();
 
 var app = builder.Build();
 

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 using Library;
+using Ups_Downs_API.ApiService.Services;
+using static Google.Protobuf.WellKnownTypes.Field.Types;
 
 namespace Ups_Downs_API.ApiService.Controllers
 {
@@ -9,13 +11,25 @@ namespace Ups_Downs_API.ApiService.Controllers
     //example: https://localhost:7466/skeleton is the end point currently
     public class SkeletonController : ControllerBase //remove SkeletonController and rename to the *pagename*Controller
     {
+
+        private readonly SkeletonService _skeletonService;
+
+        // Constructor Injection
+        public SkeletonController(SkeletonService skeletonService)
+        {
+            _skeletonService = skeletonService;
+        }
+
         [HttpGet]//if page has several different types of get or post requests you can use [HttpGet("Skeleton")]
-        public ActionResult<SkeletonObject> Get()//remove SkeletonObject from ActionResult<SkeletonObject> and rename with the actually object to return
+        public ActionResult<SkeletonObject> someGet()//remove SkeletonObject from ActionResult<SkeletonObject> and rename with the actually object to return
         {
             var obj = new SkeletonObject();//replace with actual object you are passing
             //Logic for service file connection
 
+            if (!ModelState.IsValid)
+            {
 
+            }
 
 
             //this return is an ActionResult object that is created with the ok() method
@@ -27,8 +41,31 @@ namespace Ups_Downs_API.ApiService.Controllers
             return Ok(obj);//returns status code 200 and the object for retrieval
         }
 
+        [HttpGet]
+        public ActionResult<SkeletonObject> someTestGet([FromQuery] SkeletonObject receivedObject)
+        {
+        // [FromQuery] - If I understand this right, the FromQuery will bind
+        // the query parameters from a given HTTP Request to the method parameters, in this case our SkeletonObject
+
+        /* For example, [FromQuery] DateTime startDate, [FromQuery] 
+                DateTime endDate binds the query parameters(startDate and endDate ) 
+                from an HTTP GET request to the respective method parameters */
+
+
+            //validating the model, if model is not valid send a BadRequest
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            //service logic
+            _skeletonService.ProcessSkeleton(receivedObject);
+
+            return Ok(receivedObject);
+        }
+
         [HttpPost]
-        public IActionResult Post([FromBody] Library.SkeletonObject receivedObject)
+        public IActionResult somePost([FromBody] Library.SkeletonObject receivedObject)
         {
             //logic for service file connection
 
