@@ -2,7 +2,6 @@
 
 using Library;
 using Ups_Downs_API.ApiService.Services;
-using static Google.Protobuf.WellKnownTypes.Field.Types;
 
 namespace Ups_Downs_API.ApiService.Controllers
 {
@@ -59,7 +58,7 @@ namespace Ups_Downs_API.ApiService.Controllers
             }
 
             //service logic
-            _skeletonService.ProcessSkeleton(receivedObject);
+            _skeletonService.ProcessSkeletonGet(receivedObject);
 
             return Ok(receivedObject);
         }
@@ -68,6 +67,14 @@ namespace Ups_Downs_API.ApiService.Controllers
         public IActionResult somePost([FromBody] Library.SkeletonObject receivedObject)
         {
             //logic for service file connection
+            //validating the model, if model is not valid send a BadRequest
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            //service logic
+            _skeletonService.ProcessSkeletonPost(receivedObject);
 
             //return created() if you are creating a new database entry and it was successful
             return Created();//returns status code 201 for success on saving the recieved object to the database
