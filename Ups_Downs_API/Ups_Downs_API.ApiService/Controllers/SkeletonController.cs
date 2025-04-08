@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
 using Library;
 using Ups_Downs_API.ApiService.Services;
 
@@ -7,7 +6,7 @@ namespace Ups_Downs_API.ApiService.Controllers
 {
     [ApiController]
     [Route("skeleton")]//remove "skeleton" and rename to the page you want the api calls to come from
-    //example: https://localhost:7466/skeleton is the end point currently
+    //example: https://localhost:7466/skeleton is the end point currently, if we want to call a specific endpoint do https://localhost:7466/skeleton/test
     public class SkeletonController : ControllerBase //remove SkeletonController and rename to the *pagename*Controller
     {
 
@@ -19,52 +18,26 @@ namespace Ups_Downs_API.ApiService.Controllers
             _skeletonService = skeletonService;
         }
 
-        [HttpGet]//if page has several different types of get or post requests you can use [HttpGet("Skeleton")]
-        public ActionResult<SkeletonObject> someGet()//remove SkeletonObject from ActionResult<SkeletonObject> and rename with the actually object to return
-        {
-            var obj = new SkeletonObject();//replace with actual object you are passing
-            //Logic for service file connection
-
-            if (!ModelState.IsValid)
-            {
-
-            }
-
-
-            //this return is an ActionResult object that is created with the ok() method
-            //use this to return the object you want and the status code
-            //other ActionResult methods incase you need different return types
-            //NotFound() gives a 404 not found
-            //BadRequest() gives a 400 message
-            //StatusCode(500) for generic server side error that does not return an object
-            return Ok(obj);//returns status code 200 and the object for retrieval
-        }
-
-        [HttpGet]
+        [HttpGet("test")] //if page has different types of GET or POST requests we need to diversify the call like this
         public ActionResult<SkeletonObject> someTestGet([FromQuery] SkeletonObject receivedObject)
+        // <...? is our expected return value, replace with the object class we need
+        // [FromQuery] - FromQuery will bind URL parameters from a HTTP Request to the method parameters
         {
-        // [FromQuery] - If I understand this right, the FromQuery will bind
-        // the query parameters from a given HTTP Request to the method parameters, in this case our SkeletonObject
-
-        /* For example, [FromQuery] DateTime startDate, [FromQuery] 
-                DateTime endDate binds the query parameters(startDate and endDate ) 
-                from an HTTP GET request to the respective method parameters */
-
-
-            //validating the model, if model is not valid send a BadRequest
+            //validating the model, if model is not valid send a BadRequest - which is 400 and send what the issue was
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            //service logic
-            _skeletonService.ProcessSkeletonGet(receivedObject);
+            //service logic - sends object to method in service.
+            var test = _skeletonService.ProcessSkeletonGet(receivedObject);
 
-            return Ok(receivedObject);
+            // this will return status code 200 and the object for retrieval
+            return Ok(test);
         }
 
         [HttpPost]
-        public IActionResult somePost([FromBody] Library.SkeletonObject receivedObject)
+        public IActionResult somePost([FromBody] SkeletonObject receivedObject)
         {
             //logic for service file connection
             //validating the model, if model is not valid send a BadRequest

@@ -2,6 +2,7 @@
 {
     public class SkeletonObject
     {
-        public SkeletonObject() { }
+        public required string Name { get; set; }
+        public required string Password { get; set; }
     }
 }
