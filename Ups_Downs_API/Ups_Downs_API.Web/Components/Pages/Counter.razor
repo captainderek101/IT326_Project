@@ -1,21 +1,53 @@
 ﻿@page "/counter"
 @rendermode InteractiveServer
+@inject IJSRuntime JS
 
 <PageTitle>Counter</PageTitle>
 
 <h1>Counter</h1>
 
-<button class="btn btn-primary" @onclick="CallRequest">HTTP Request Test</button>
+<button class="btn btn-primary" @onclick="SetItemAsync">Save Item to Session Storage</button>
+<input type="text" @bind="inputValue" />
 
-<p>API Response: @requestResponse</p>
+<p>Response: @inputValue</p>
 
-<button class="btn btn-primary" @onclick="CallPost">HTTP Post Test</button>
+<button class="btn btn-primary" @onclick="GetItemAsync">Retrieve Item from Session Storage</button>
 
-<p>API Response: @postResponse</p>
+<p>Response: @sessionItem</p>
 @code {
     private string requestResponse = "";
-
     private string postResponse = "";
+    private string inputValue = "";
+    private string sessionItem = "";
+
+    private readonly IJSRuntime _jsRuntime;
+
+
+
+
+
+
+
+
+
+    public async Task SetItemAsync()
+    {
+        await JS.InvokeVoidAsync("sessionStorage.setItem", "username", inputValue);
+    }
+
+    public async Task GetItemAsync()
+    {
+        sessionItem = await JS.InvokeAsync<string>("sessionStorage.getItem", "username");
+    }
+
+
+
+
+
+
+
+
+
 
     [Inject]
     private HttpClient _httpClient { get; set; }
@@ -47,4 +79,5 @@
         postResponse = await response.Content.ReadAsStringAsync();
     }
 
+    
 }
