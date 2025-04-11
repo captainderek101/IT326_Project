@@ -1,7 +1,23 @@
 ﻿@page "/"
+@rendermode InteractiveServer
+@inject IJSRuntime JS
 
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+<button class="btn btn-primary" @onclick="GetItemAsync">Retrieve Item from Session Storage</button>
+
+<p>Response: @sessionItem</p>
+@code {
+    private string sessionItem = "";
+
+    private readonly IJSRuntime _jsRuntime;
+
+
+    public async Task GetItemAsync()
+    {
+        sessionItem = await JS.InvokeAsync<string>("sessionStorage.getItem", "username");
+    }
+}
