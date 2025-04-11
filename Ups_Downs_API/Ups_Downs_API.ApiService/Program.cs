@@ -1,8 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using Ups_Downs_API.ApiService.Services;
+using Library;
+using Microsoft.AspNetCore.Identity;
 using Ups_Downs_API.ApiService.Database;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+// This is a singleton class that will be used to store the user information in memory. It is not recommended to use this in production, but it is useful for testing purposes.
+builder.Services.AddSingleton<TempGlobalSingleton>(); 
 
 Console.WriteLine("Hello from ups and downs api service");
 
@@ -19,6 +25,7 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<SkeletonService>();
 builder.Services.AddScoped<ViewPostService>();
 builder.Services.AddScoped<CreatingPostService>();
+builder.Services.AddScoped<LoginService>();
 
 var connectionString =
     builder.Configuration.GetConnectionString("DefaultConnection")
