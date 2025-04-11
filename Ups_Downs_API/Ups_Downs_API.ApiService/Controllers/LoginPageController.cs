@@ -16,38 +16,46 @@ namespace Ups_Downs_API.ApiService.Controllers
         }
 
         [HttpPost]
-        public IActionResult recieveLoginRequest([FromBody] UserObject receivedObject)
+        public ActionResult<string> recieveLoginRequest([FromBody] UserObject userLoginAttempt)
         {
-            //logic for service file connection
-            //validating the model, if model is not valid send a BadRequest
-            if (receivedObject.validateLogin())
+            Console.WriteLine("Recieved Login Request in Controller");
+            //validating the model, if model is invalid send a BadRequest
+            if (userLoginAttempt.validateLogin())
             {
                 return BadRequest("Missing Requirments");
             }
 
             //service logic
-            _loginService.ProcessLoginPost(receivedObject);
+            _loginService.ProcessLoginPost(userLoginAttempt);
 
-            return Ok();
+            return Ok("successful login");
         }
 
-        [HttpGet("create")]
-        public IActionResult recieveAccountCreationRequest([FromBody] UserObject receivedObject)
+        [HttpGet]
+        public ActionResult<UserObject> returnObject()
         {
-            //logic for service file connection
-            //validating the model, if model is not valid send a BadRequest
-            if (!ModelState.IsValid)
+            Console.WriteLine("Recieved get Request from login page");
+
+            UserObject user = new UserObject("nammme", "passssword");
+            return Ok(user);
+        }
+
+        [HttpPost("create")]
+        public IActionResult recieveAccountCreationRequest([FromBody] UserObject accountCreationRequest)
+        {
+            //validating the model, if model is invalid send a BadRequest
+            if (accountCreationRequest.validateLogin())
             {
-                return BadRequest(ModelState);
+                return BadRequest("Missing Requirments");
             }
 
             //service logic
-            _loginService.ProcessAccountCreationPost(receivedObject);
+            _loginService.ProcessAccountCreationPost(accountCreationRequest);
 
             return Created();
         }
 
-        [HttpGet("forgotpw")]
+        [HttpPost("forgotpw")]
         public IActionResult recieveForgotPwRequest([FromBody] UserObject receivedObject)
         {
             //logic for service file connection

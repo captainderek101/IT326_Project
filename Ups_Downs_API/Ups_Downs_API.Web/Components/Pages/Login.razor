@@ -14,11 +14,11 @@
         <h1>login</h1>
         <h3>username:</h3>
         <input type="text" @bind="userName" />
-        
+
         <br />
         <h3>password:</h3>
         <input type="text" @bind="password" />
-        
+
         <br />
         <button @onclick="login">login</button>
     }
@@ -27,14 +27,14 @@
         <h1>Create Account</h1>
         <h3>username:</h3>
         <input type="text" @bind="userName" />
-        
+
         <br />
         <h3>password:</h3>
         <input type="text" @bind="password" />
         <br />
         <h3>Verify Password:</h3>
         <input type="text" @bind="secondPassword" />
-        
+
         <br />
         <button @onclick="createAccount">Create</button>
     }
@@ -51,17 +51,18 @@
         <br />
         <button @onclick="forgotPw">Send Email Verification</button>
     }
-
+    <p>@returninfo</p>
 </div>
 
 @code {
-    private string userName = "";
-    private string password = "";
-    private string secondPassword = "";
-    private string email = "";
-    private string inputValue = "";
-    private string sessionItem = "";
-    private int activeTab = 0;
+    public string userName = "";
+    public string password = "";
+    public string secondPassword = "";
+    public string email = "";
+    public string inputValue = "";
+    public string sessionItem = "";
+    public int activeTab = 0;
+    public string returninfo = "";
 
     private void switchTab(int tab)
     {
@@ -75,9 +76,12 @@
     private async Task login()
     {
         //create user object based off user credentials
-        var user = new Library.UserObject(userName, password);
+        var user = new Library.UserObject("test", "user");
 
-        await _httpClient.PostAsJsonAsync<Library.UserObject>("https:localhost:7466/login", user);
+        Console.WriteLine("created object");
+
+        //http Post request
+        returninfo = await _httpClient.PostAsJsonAsync<Library.UserObject>("https:localhost:7466/login", user);
     }
 
     private async Task createAccount()
