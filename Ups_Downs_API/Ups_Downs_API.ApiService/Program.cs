@@ -15,6 +15,7 @@ builder.Services.AddControllers();
 
 // Sample service file below - registering for dependency injection
 builder.Services.AddScoped<SkeletonService>();
+builder.Services.AddScoped<ViewPostService>();
 
 var app = builder.Build();
 
