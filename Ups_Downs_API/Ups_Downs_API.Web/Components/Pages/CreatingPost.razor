@@ -7,20 +7,30 @@
 <h3>Create a Post</h3>
 
 <EditForm Model=@Post OnSubmit=@FormSubmitted>
-    <label for="content">Content:</label><br />
+    <label for="daytype">How was your day?</label><br />
+    <InputSelect id="daytype" @bind-Value="Post.PostDayType">
+        <option value="">-- Select --</option>
+        <option value="good">Good</option>
+        <option value="bad">Bad</option>
+    </InputSelect><br /><br />
+
+    <label for="content">Describe Your Day:</label><br />
     <InputTextArea id="content" @bind-Value="Post.Content" rows="5" cols="40"/><br/><br/>
 
     <input type="submit" value="Submit" class="btn btn-primary"/>
 </EditForm>
 
+<!-- temp, this is just for checking the status of stuff captured -->
 <text>Status: @Status</text><br/>
-<text>PostId: @Status</text><br/>
+<text>PostId: @PostId</text><br/>
 <text>PostDayType: @PostDayType</text><br/>
 <text>PostTimestamp: @PostTimestamp</text><br/>
 <text>UserId: @UserId</text><br/>
 <text>Content: @Content</text>
+
 @code
 {
+    <!-- temp, this is just for checking the status of stuff captured -->
     string Status = "Not submitted";
     int PostId = 0;
     string PostDayType = "n/a";
@@ -37,6 +47,7 @@
         Content = ""
     };
 
+    <!-- temp, this is just for checking the status of stuff captured -->
     void FormSubmitted()
     {
         Status = $"sent";
