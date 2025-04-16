@@ -31,7 +31,7 @@
 
         // Send the POST request with the object
         //PostAsJsonAsync will serialize the object to JSON for you
-        var response = await _httpClient.PostAsJsonAsync("https://localhost:7466/view/report", myObject);
+        var response = await _httpClient.PostAsJsonAsync<Library.ReportRequest>("https://localhost:7466/view/report", myObject);
         await response.Content.ReadAsStringAsync();
     }
 
@@ -45,7 +45,7 @@
 
         // Send the POST request with the object
         //PostAsJsonAsync will serialize the object to JSON for you
-        var response = await _httpClient.PutAsJsonAsync("https://localhost:7466/view/vote", myObject);
+        var response = await _httpClient.PutAsJsonAsync<Library.VoteRequest>("https://localhost:7466/view/vote", myObject);
         await response.Content.ReadAsStringAsync();
     }
 
@@ -59,7 +59,7 @@
 
         // Send the POST request with the object
         //PostAsJsonAsync will serialize the object to JSON for you
-        var response = await _httpClient.PostAsJsonAsync("https://localhost:7466/view/comment", myObject);
+        var response = await _httpClient.PostAsJsonAsync<Library.CommentObject>("https://localhost:7466/view/comment", myObject);
         await response.Content.ReadAsStringAsync();
     }
 
@@ -73,7 +73,7 @@
 
         // Send the POST request with the object
         //PostAsJsonAsync will serialize the object to JSON for you
-        var response = await _httpClient.PostAsJsonAsync("https://localhost:7466/view/subscribe", myObject);
+        var response = await _httpClient.PostAsJsonAsync<Library.SubscriptionRequest>("https://localhost:7466/view/subscribe", myObject);
         await response.Content.ReadAsStringAsync();
     }
 }

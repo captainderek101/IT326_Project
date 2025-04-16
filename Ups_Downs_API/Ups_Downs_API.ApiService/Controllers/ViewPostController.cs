@@ -1,6 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Library;
 using Ups_Downs_API.ApiService.Services;
+using Microsoft.EntityFrameworkCore;
+using Ups_Downs_API.ApiService.Database;
+using Microsoft.Data.SqlClient;
+using System.Data;
+using static Azure.Core.HttpHeader;
 
 namespace Ups_Downs_API.ApiService.Controllers
 {
@@ -9,11 +14,13 @@ namespace Ups_Downs_API.ApiService.Controllers
     public class ViewPostController : ControllerBase
     {
         private readonly ViewPostService _viewPostService;
+        private readonly IDbContextFactory<ApplicationDbContext> _contextFactory;
 
         // Constructor Injection
-        public ViewPostController(ViewPostService viewPostService)
+        public ViewPostController(ViewPostService viewPostService, IDbContextFactory<ApplicationDbContext> contextFactory)
         {
             _viewPostService = viewPostService;
+            _contextFactory = contextFactory;
         }
 
         [HttpGet(Name = "view")] //if page has different types of GET or POST requests we need to diversify the call like this
@@ -26,6 +33,23 @@ namespace Ups_Downs_API.ApiService.Controllers
             {
                 return BadRequest(ModelState);
             }
+            string names = "";
+            using (var context = _contextFactory.CreateDbContext())
+            {
+                var connection = (SqlConnection)context.Database.GetDbConnection();
+                var command = new SqlCommand("SELECT FirstName, LastName FROM TEST_Gamers;", connection);
+                connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    names += reader.GetString(0);
+                    names += " ";
+                    names += reader.GetString(1);
+                    names += ", ";
+                }
+                reader.Close();
+            }
+            Console.WriteLine(names);
 
             //service logic - sends object to method in service.
             var test = _viewPostService.GetPost(receivedObject);
