@@ -1,0 +1,49 @@
+﻿@page "/createPost"
+@rendermode InteractiveServer
+@using Library   
+
+<PageTitle>Create a Post</PageTitle>
+
+<h3>Create a Post</h3>
+
+<EditForm Model=@Post OnSubmit=@FormSubmitted>
+    <label for="content">Content:</label><br />
+    <InputTextArea id="content" @bind-Value="Post.Content" rows="5" cols="40"/><br/><br/>
+
+    <input type="submit" value="Submit" class="btn btn-primary"/>
+</EditForm>
+
+<text>Status: @Status</text><br/>
+<text>PostId: @Status</text><br/>
+<text>PostDayType: @PostDayType</text><br/>
+<text>PostTimestamp: @PostTimestamp</text><br/>
+<text>UserId: @UserId</text><br/>
+<text>Content: @Content</text>
+@code
+{
+    string Status = "Not submitted";
+    int PostId = 0;
+    string PostDayType = "n/a";
+    string PostTimestamp = "n/a";
+    int UserId = 0;
+    string Content = "n/a";
+
+    CreatingPostObject Post = new CreatingPostObject
+    {
+        PostId = 0,
+        PostDayType = "",
+        PostTimestamp = "",
+        UserId = 0,
+        Content = ""
+    };
+
+    void FormSubmitted()
+    {
+        Status = $"sent";
+        PostId = Post.PostId;
+        PostDayType = Post.PostDayType;
+        PostTimestamp = Post.PostTimestamp;
+        UserId = Post.UserId;
+        Content = Post.Content;
+	}
+}
