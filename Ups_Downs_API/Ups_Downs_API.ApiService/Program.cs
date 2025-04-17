@@ -23,6 +23,7 @@ builder.Services.AddScoped<ViewPostService>();
 builder.Services.AddScoped<CreatingPostService>();
 builder.Services.AddScoped<LoginService>();
 builder.Services.AddScoped<HomePageService>();
+builder.Services.AddScoped<BrowseService>();
 
 var connectionString =
     builder.Configuration.GetConnectionString("DefaultConnection")
