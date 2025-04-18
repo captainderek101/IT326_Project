@@ -1,30 +1,45 @@
 ﻿using Library;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Ups_Downs_API.ApiService.Services
 {
     public class LoginService
     {
-        private readonly TempGlobalSingleton _TempDB;//remove later, temporary database
-        public object ProcessLoginPost(UserObject obj)
+        //private readonly DbContext
+        public User ProcessLoginPost(LoginRequest obj)
         {
-            Console.WriteLine("Recieved Login Request in Service");
-            //temporary database connection logic
-            UserObject? tempUser = _TempDB.GetUser(obj);
+            User user = new User("username", "password", "email");
+            //TODO: database connection
 
-            return tempUser;
+            return user;
         }
 
-        public bool ProcessAccountCreationPost(UserObject obj)
+        public bool ProcessAccountCreationPost(CreateAccountObject obj)
         {
             // TODO: DB connection here
 
-            return true;
+            return true; //account was created
         }
 
-        public void ProcessForgotPwPost(UserObject obj)
+        public bool ProcessForgotPwPost(ForgotPasswordObject obj)
         {
             // TODO: DB connection here
+
+            return true;//password was changed
+        }
+
+        public bool ProcessUpdateAccountPost(User obj)
+        {
+            // TODO: DB connection here
+
+            return true; //account was updated
+        }
+
+        public bool ProcessEmailValidationPost(User obj)
+        {
+            // TODO: DB connection here
+
+            return true; //email was verified
         }
     }
 }

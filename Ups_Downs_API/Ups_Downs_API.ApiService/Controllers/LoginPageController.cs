@@ -16,57 +16,74 @@ namespace Ups_Downs_API.ApiService.Controllers
         }
 
         [HttpPost]
-        public ActionResult<string> recieveLoginRequest([FromBody] UserObject userLoginAttempt)
+        public ActionResult recieveLoginPostRequest([FromBody] LoginRequest userLoginAttempt)
         {
-            Console.WriteLine("Recieved Login Request in Controller");
             //validating the model, if model is invalid send a BadRequest
-            if (userLoginAttempt.validateLogin())
-            {
+            if (!ModelState.IsValid)
                 return BadRequest("Missing Requirments");
-            }
 
             //service logic
-            _loginService.ProcessLoginPost(userLoginAttempt);
+            User user = _loginService.ProcessLoginPost(userLoginAttempt);
 
-            return Ok("successful login");
-        }
+            if (user == null)
+                return StatusCode(500, "Bad Login");
 
-        [HttpGet]
-        public ActionResult<UserObject> returnObject()
-        {
-            Console.WriteLine("Recieved get Request from login page");
-
-            UserObject user = new UserObject("nammme", "passssword");
             return Ok(user);
         }
 
         [HttpPost("create")]
-        public IActionResult recieveAccountCreationRequest([FromBody] UserObject accountCreationRequest)
+        public IActionResult recieveAccountCreationPostRequest([FromBody] CreateAccountObject accountCreationRequest)
         {
             //validating the model, if model is invalid send a BadRequest
-            if (accountCreationRequest.validateLogin())
-            {
+            if (!ModelState.IsValid)
                 return BadRequest("Missing Requirments");
-            }
 
             //service logic
-            _loginService.ProcessAccountCreationPost(accountCreationRequest);
+            if (!_loginService.ProcessAccountCreationPost(accountCreationRequest))
+                return StatusCode(500, "Account already Exists");
 
             return Created();
         }
 
         [HttpPost("forgotpw")]
-        public IActionResult recieveForgotPwRequest([FromBody] UserObject receivedObject)
+        public IActionResult recieveForgotPwPostRequest([FromBody] ForgotPasswordObject receivedObject)
         {
             //logic for service file connection
             //validating the model, if model is not valid send a BadRequest
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
             //service logic
             _loginService.ProcessForgotPwPost(receivedObject);
+
+            return Ok();
+        }
+
+        [HttpPost("update")]
+        public IActionResult recieveUpdateAccountPostRequest([FromBody] User receivedObject)
+        {
+            //logic for service file connection
+            //validating the model, if model is not valid send a BadRequest
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            //service logic
+            _loginService.ProcessUpdateAccountPost(receivedObject);
+
+            return Ok();
+        }
+
+        [HttpPost("validate")]
+        public IActionResult recieveEmailValidationPostRequest([FromBody] User receivedObject)
+        {
+            //logic for service file connection
+            //validating the model, if model is not valid send a BadRequest
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            //service logic
+            if (!_loginService.ProcessEmailValidationPost(receivedObject))
+                return StatusCode(500, "");
 
             return Ok();
         }

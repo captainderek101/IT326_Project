@@ -23,7 +23,7 @@ namespace Ups_Downs_API.ApiService.Controllers
 
             //TODO: validate model state
             
-            return Ok(new UserObject("un", "pw"));
+            return Ok(new User("un", "pw", "em"));
         }
 
 
