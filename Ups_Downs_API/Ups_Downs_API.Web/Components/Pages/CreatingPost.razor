@@ -57,4 +57,17 @@
         UserId = Post.UserId;
         Content = Post.Content;
 	}
+
+    [Inject]
+    private HttpClient _httpClient { get; set; }
+
+    //creates a POST request to the
+    private async Task login()
+    {
+        //create user object based off user credentials
+        var newPost = new Library.CreatingPostObject(PostId, "PostDayType", "PostTimestamp", UserId, "Content");
+
+        //http Post request
+        await _httpClient.PostAsJsonAsync<Library.CreatingPostObject>("https:localhost:7466/creatingPost/Creation", newPost);
+    }
 }
