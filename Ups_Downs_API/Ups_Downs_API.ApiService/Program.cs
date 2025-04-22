@@ -18,6 +18,7 @@ builder.Services.AddControllers();
 // Sample service file below - registering for dependency injection
 builder.Services.AddScoped<SkeletonService>();
 builder.Services.AddScoped<ViewPostService>();
+builder.Services.AddScoped<CreatingPostService>();
 
 var connectionString =
     builder.Configuration.GetConnectionString("DefaultConnection")
