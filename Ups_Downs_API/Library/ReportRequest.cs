@@ -1,12 +1,15 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Xml.Linq;
 
 namespace Library
 {
     public class ReportRequest
     {
-        public required int UserID { get; set; }
-        public required int PostID { get; set; }
+        [Required]
+        public int UserID { get; set; }
+        [Required]
+        public int PostID { get; set; }
 
         public ReportRequest()
         {

@@ -33,10 +33,10 @@ namespace Ups_Downs_API.ApiService.Controllers
             }
 
             //service logic - sends object to method in service.
-            var test = _viewPostService.GetPost(receivedObject);
+            var retrievedPost = _viewPostService.GetPost(receivedObject);
 
             // this will return status code 200 and the object for retrieval
-            return Ok(test);
+            return Ok(retrievedPost);
         }
 
         [HttpPost("report", Name = "report")]
@@ -50,10 +50,10 @@ namespace Ups_Downs_API.ApiService.Controllers
             }
 
             //service logic
-            _viewPostService.PostReport(receivedObject);
+            var createdReport = _viewPostService.PostReport(receivedObject);
 
             //return created() if you are creating a new database entry and it was successful
-            return Created();//returns status code 201 for success on saving the recieved object to the database
+            return Created($"/view/{createdReport.PostID}", createdReport);//returns status code 201 for success on saving the recieved object to the database
         }
 
         [HttpPut("vote", Name = "vote")]
@@ -67,10 +67,10 @@ namespace Ups_Downs_API.ApiService.Controllers
             }
 
             //service logic
-            _viewPostService.PutVote(receivedObject);
+            var createdVote = _viewPostService.PutVote(receivedObject);
 
             //return created() if you are creating a new database entry and it was successful
-            return Created();//returns status code 201 for success on saving the recieved object to the database
+            return Created($"/view/{createdVote.PostID}", createdVote);//returns status code 201 for success on saving the recieved object to the database
         }
 
         [HttpPost("comment", Name = "comment")]
@@ -84,10 +84,10 @@ namespace Ups_Downs_API.ApiService.Controllers
             }
 
             //service logic
-            _viewPostService.PostComment(receivedObject);
+            var createdComment = _viewPostService.PostComment(receivedObject);
 
             //return created() if you are creating a new database entry and it was successful
-            return Created();//returns status code 201 for success on saving the recieved object to the database
+            return Created($"/view/{createdComment.PostID}", createdComment);//returns status code 201 for success on saving the recieved object to the database
         }
 
         [HttpPost("subscribe", Name = "subscribe")]
@@ -101,9 +101,10 @@ namespace Ups_Downs_API.ApiService.Controllers
             }
 
             //service logic
-            _viewPostService.PostSubscribe(receivedObject);
+            var createdSubscription = _viewPostService.PostSubscribe(receivedObject);
 
-            return RedirectToRoute("view");
+            //return created() if you are creating a new database entry and it was successful
+            return Created($"/view/{createdSubscription.PostID}", createdSubscription);//returns status code 201 for success on saving the recieved object to the database
         }
 
     }

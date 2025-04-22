@@ -45,21 +45,25 @@ namespace Ups_Downs_API.ApiService.Services
 
             return v;
         }
-        public void PostReport(ReportRequest obj)
+        public ReportRequest PostReport(ReportRequest obj)
         {
             // TODO: DB connection here
+            return obj;
         }
-        public void PutVote(VoteRequest obj)
+        public VoteRequest PutVote(VoteRequest obj)
         {
             // TODO: DB connection here
+            return obj;
         }
-        public void PostComment(CommentObject obj)
+        public CommentObject PostComment(CommentObject obj)
         {
             // TODO: DB connection here
+            return obj;
         }
-        public void PostSubscribe(SubscriptionRequest obj)
+        public SubscriptionRequest PostSubscribe(SubscriptionRequest obj)
         {
             // TODO: DB connection here
+            return obj;
         }
     }
 }
