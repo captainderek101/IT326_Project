@@ -1,0 +1,100 @@
+﻿@page "/createPost"
+@rendermode InteractiveServer
+@inject HttpClient Http
+@using Library
+@using System.Globalization          // timestamp format
+@using System.Net.Http.Json          // PostAsJsonAsync
+@using System.Text.Json 
+
+<PageTitle>Create a Post</PageTitle>
+
+<h3>Create a Post</h3>
+
+<form @onsubmit="CreatePost">
+    <div class="mb-2">
+        <label for="daytype">How was your day?</label><br />
+        <select id="daytype" @bind="_postDayType">
+            <option value="">-- Select --</option>
+            <option value="good">Good</option>
+            <option value="bad">Bad</option>
+        </select>
+    </div>
+
+    <div class="mb-2">
+        <label for="content">Describe Your Day:</label><br />
+        <textarea id="content" rows="5" cols="40" @bind="_content"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<!-- capture what is being sent to the API -->
+<div class="mt-3">
+    <label class="form-label">Payload preview</label>
+    <textarea class="form-control small" rows="6" readonly>
+        @_payloadJson
+    </textarea>
+</div>
+
+<!-- small “text‑box thing” showing what will be sent -->
+@if (!string.IsNullOrWhiteSpace(_responseJson))
+{
+        <div class="mt-3">
+            <label class="form-label">API response body</label>
+            <textarea class="form-control small" rows="6" readonly>
+            @_responseJson
+            </textarea>
+        </div>
+}
+
+
+<p>Status: @_status</p>
+
+@code {
+    private string _postDayType = "";
+    private string _content = "";
+
+    private string _status = "Not submitted"; //temp - this shows the response. Either "Post Submitted" or a request info if BadRequest
+    private string _responseJson = ""; //captures the response from the API
+
+    //capture what is being sent to the API
+    private string _payloadJson =>
+        JsonSerializer.Serialize(
+            new CreatingPostObject(
+                postId: 0,
+                postDayType: _postDayType,
+                postTimestamp: "",
+                userID: 0,
+                content: _content),
+            new JsonSerializerOptions { WriteIndented = true });
+
+
+    private async Task CreatePost()
+    {
+        var post = new CreatingPostObject(
+            postId: 0,
+            postDayType: _postDayType,
+            postTimestamp: "test",
+            userID: 0,
+            content: _content);
+
+        var resp = await Http.PostAsJsonAsync("https://localhost:7466/creatingPost/Creation", post);
+
+        // read the response body as text
+        var raw = await resp.Content.ReadAsStringAsync();
+
+        // prints if the body is JSON - used to see what API responds with
+        try
+        {
+            var jsonElem = JsonSerializer.Deserialize<JsonElement>(raw);
+            _responseJson = JsonSerializer.Serialize(
+                jsonElem, new JsonSerializerOptions { WriteIndented = true });
+        }
+        catch
+        {
+            _responseJson = raw; // not JSON or bad format – keep raw
+        }
+        // status - either success or fail
+        _status = resp.IsSuccessStatusCode ? "Post submitted" : $"Failed: {resp.StatusCode}";
+    }
+}
