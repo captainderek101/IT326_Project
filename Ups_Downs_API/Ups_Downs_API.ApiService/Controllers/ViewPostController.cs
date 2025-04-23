@@ -22,7 +22,7 @@ namespace Ups_Downs_API.ApiService.Controllers
         }
 
         [HttpGet(Name = "view")] //if page has different types of GET or POST requests we need to diversify the call like this
-        public ActionResult<PostObject> retrievePost_GET([FromQuery] PostObject receivedObject)
+        public ActionResult<PostObject> retrievePost_GET([FromQuery(Name = "id")] int postID = 1)
         // <...? is our expected return value, replace with the object class we need
         // [FromQuery] - FromQuery will bind URL parameters from a HTTP Request to the method parameters
         {
@@ -33,7 +33,7 @@ namespace Ups_Downs_API.ApiService.Controllers
             }
 
             //service logic - sends object to method in service.
-            var retrievedPost = _viewPostService.GetPost(receivedObject);
+            var retrievedPost = _viewPostService.GetPost(postID);
 
             // this will return status code 200 and the object for retrieval
             return Ok(retrievedPost);

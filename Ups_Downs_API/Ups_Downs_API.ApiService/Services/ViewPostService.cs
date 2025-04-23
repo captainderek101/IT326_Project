@@ -15,35 +15,26 @@ namespace Ups_Downs_API.ApiService.Services
             _contextFactory = contextFactory;
         }
 
-        public object GetPost(PostObject obj)
+        public object GetPost(int postID)
         {
             // TODO: DB connection here
-            obj.Content = "test";
+            PostObject obj = new PostObject();
+            obj.PostID = postID;
 
-            string names = "";
             using (var context = _contextFactory.CreateDbContext())
             {
                 var connection = (SqlConnection)context.Database.GetDbConnection();
-                var command = new SqlCommand("SELECT FirstName, LastName FROM TEST_Gamers;", connection);
+                var command = new SqlCommand($"SELECT message FROM Posts WHERE postID = {postID};", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    names += reader.GetString(0);
-                    names += " ";
-                    names += reader.GetString(1);
-                    names += ", ";
+                    obj.Content = reader.GetString(0);
                 }
                 reader.Close();
             }
-            Console.WriteLine(names);
 
-            var v = new
-            {
-                Content = obj.Content
-            };
-
-            return v;
+            return obj;
         }
         public ReportRequest PostReport(ReportRequest obj)
         {
