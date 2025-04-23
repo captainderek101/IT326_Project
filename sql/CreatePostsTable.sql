@@ -8,13 +8,17 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+DROP TABLE IF EXISTS Posts;
+
 CREATE TABLE [dbo].[Posts](
 	[userID] [int] NOT NULL,
 	[postID] [int] IDENTITY(1,1) NOT NULL,
 	[lastUpdated] [datetime] NULL,
 	[dayType] [nchar](10) NULL,
 	[sentiment] [nchar](10) NULL,
-	[message] [nvarchar](max) NULL
+	[message] [nvarchar](max) NULL,
+	PRIMARY KEY (postID),
+	FOREIGN KEY (userID) REFERENCES Users(userID)
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
