@@ -3,115 +3,129 @@
 @inject IJSRuntime JS
 
 <div>
-    <button @onclick="() => switchTab(0)">Login</button>
-    <button @onclick="() => switchTab(1)">Create Account</button>
-    <button @onclick="() => switchTab(2)">Forgot Password</button>
-</div>
-
-<div class="tab-content">
-    @if (activeTab == 0)
+    @if (User == null)
     {
-        <h1>login</h1>
-        <h3>username:</h3>
-        <input type="text" @bind="userName" />
+        <button @onclick="() => switchTab(0)">Login</button>
+        <button @onclick="() => switchTab(1)">Create Account</button>
+        <button @onclick="() => switchTab(2)">Forgot Password</button>
+        @code
+        {
+            public int activeTab = 0;
 
-        <br />
-        <h3>password:</h3>
-        <input type="text" @bind="password" />
+            private void switchTab(int tab)
+            {
+                activeTab = tab;
+            }
+        }
+        @if (activeTab == 0)
+        {
+            <h1>login</h1>
+            <h3>username:</h3>
+            <input type="text" @bind="userName" /><br />
+            <h3>password:</h3>
+            <input type="text" @bind="password" /><br />
+            <button @onclick="login">login</button>
+            @code
+            {
+                public string userName = "";
+                public string password = "";
+                //creates a POST request to the
+                private async Task login()
+                {
+                    //create user object based off user credentials
+                    var newLogin = new Library.LoginRequest("test", "user");
 
-        <br />
-        <button @onclick="login">login</button>
+                    //http Post request
+                    await _httpClient.PostAsJsonAsync<Library.LoginRequest>("https:localhost:7466/login", newLogin);
+
+                    //Save the User to the sessionStorage to denote the User is logged in
+                    await JS.InvokeVoidAsync("sessionStorage.setItem", "username", inputValue);
+                }
+            }
+        }
+        else if (activeTab == 1)
+        {
+            <h1>Create Account</h1>
+            <h3>username:</h3>
+            <input type="text" @bind="userName" /><br />
+            <h3>password:</h3>
+            <input type="text" @bind="password" /><br />
+            <h3>Verify Password:</h3>
+            <input type="text" @bind="secondPassword" /><br />
+            <button @onclick="createAccount">Create</button>
+            @code
+            {
+                public string secondPassword = "";
+
+                //function to create a HTTP POST request to create an account
+                private async Task createAccount()
+                {
+                    //create user object based off user credentials
+                    var user = new Library.CreateAccountObject(userName, password);
+
+                    await _httpClient.PostAsJsonAsync<Library.CreateAccountObject>("https:localhost:7466/login/create", user);
+                }
+            }
+        }
+        else if (activeTab == 2)
+        {
+            <h1>Forgot Password</h1>
+            <h3>username:</h3>
+            <input type="text" @bind="userName" /><br />
+            <h3>Email:</h3>
+            <input type="text" @bind="email" /><br />
+            <button @onclick="forgotPw">Send Email Verification</button>
+            @code
+            {
+                public string email = "";
+                private async Task forgotPw()
+                {
+                    //create user object based off user credentials
+                    var user = new Library.ForgotPasswordObject(userName, password);
+
+                    await _httpClient.PostAsJsonAsync<Library.ForgotPasswordObject>("https:localhost:7466/login/forgotpw", user);
+                }
+            }
+        }
+        <p>@returninfo</p>
     }
-    else if (activeTab == 1)
+    else
     {
-        <h1>Create Account</h1>
+        <h1>Edit Account</h1>
         <h3>username:</h3>
-        <input type="text" @bind="userName" />
-
-        <br />
+        <input type="text" @bind="userName" /><br />
         <h3>password:</h3>
-        <input type="text" @bind="password" />
-        <br />
-        <h3>Verify Password:</h3>
-        <input type="text" @bind="secondPassword" />
-
-        <br />
-        <button @onclick="createAccount">Create</button>
-    }
-    else if (activeTab == 2)
-    {
-        <h1>Forgot Password</h1>
-        <h3>username:</h3>
-        <input type="text" @bind="userName" />
-
-        <br />
+        <input type="text" @bind="password" /><br />
         <h3>Email:</h3>
         <input type="text" @bind="email" />
+        <button @onclick="updateAccount">Update Account Information</button>
+        @code 
+        {
+            private async Task updateAccount()
+            {
+                //create user object based off user credentials
+                var user = new Library.User(userName, password, email);
 
-        <br />
-        <button @onclick="forgotPw">Send Email Verification</button>
+                await _httpClient.PostAsJsonAsync<Library.User>("https:localhost:7466/login/forgotpw", user);
+            }
+        }
     }
-    <p>@returninfo</p>
 </div>
 
 @code {
-    public string userName = "";
-    public string password = "";
-    public string secondPassword = "";
-    public string email = "";
+    public Library.User User = null;
+    
     public string inputValue = "";
     public string sessionItem = "";
-    public int activeTab = 0;
     public string returninfo = "";
 
-    private void switchTab(int tab)
-    {
-        activeTab = tab;
-    }
+    private readonly IJSRuntime _jsRuntime;
 
     [Inject]
     private HttpClient _httpClient { get; set; }
 
-    //creates a POST request to the 
-    private async Task login()
-    {
-        //create user object based off user credentials
-        var newLogin = new Library.LoginRequest("test", "user");
-
-        //http Post request
-        await _httpClient.PostAsJsonAsync<Library.LoginRequest>("https:localhost:7466/login", newLogin);
-    }
-
-    private async Task createAccount()
-    {
-
-        //create user object based off user credentials
-        var user = new Library.CreateAccountObject(userName, password);
-
-        await _httpClient.PostAsJsonAsync<Library.CreateAccountObject>("https:localhost:7466/login/create", user);
-    }
-
-    private async Task forgotPw()
-    {
-
-        //create user object based off user credentials
-        var user = new Library.ForgotPasswordObject(userName, password);
-
-        await _httpClient.PostAsJsonAsync<Library.ForgotPasswordObject>("https:localhost:7466/login/forgotpw", user);
-    }
-
-    private async Task updateAccount()
-    {
-
-        //create user object based off user credentials
-        var user = new Library.User(userName, password, email);
-
-        await _httpClient.PostAsJsonAsync<Library.User>("https:localhost:7466/login/forgotpw", user);
-    }
-
     private async Task validateEmail()
     {
-
         //create user object based off user credentials
         var user = new Library.User(userName, password, email);
 
