@@ -18,6 +18,6 @@ Welcome to your new app.
 
     public async Task GetItemAsync()
     {
-        sessionItem = await JS.InvokeAsync<string>("sessionStorage.getItem", "username");
+        sessionItem = await JS.InvokeAsync<string>("sessionStorage.getItem", "Login");
     }
 }
