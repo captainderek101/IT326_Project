@@ -16,7 +16,7 @@ namespace Ups_Downs_API.ApiService.Controllers
         }
 
         [HttpPost]
-        public ActionResult recieveLoginPostRequest([FromBody] LoginRequest userLoginAttempt)
+        public ActionResult<User> recieveLoginPostRequest([FromBody] LoginRequest userLoginAttempt)
         {
             //validating the model, if model is invalid send a BadRequest
             if (!ModelState.IsValid)
@@ -26,7 +26,7 @@ namespace Ups_Downs_API.ApiService.Controllers
             User user = _loginService.ProcessLoginPost(userLoginAttempt);
 
             if (user == null)
-                return StatusCode(500, "Bad Login");
+                return Unauthorized("Invalid username or password");
 
             return Ok(user);
         }
@@ -34,9 +34,12 @@ namespace Ups_Downs_API.ApiService.Controllers
         [HttpPost("create")]
         public IActionResult recieveAccountCreationPostRequest([FromBody] CreateAccountObject accountCreationRequest)
         {
+            Console.WriteLine("HTTP POST request recieved to create an account");
             //validating the model, if model is invalid send a BadRequest
             if (!ModelState.IsValid)
                 return BadRequest("Missing Requirments");
+
+            Console.WriteLine("Model Validated");
 
             //service logic
             if (!_loginService.ProcessAccountCreationPost(accountCreationRequest))

@@ -29,17 +29,36 @@
             {
                 public string userName = "";
                 public string password = "";
-                //creates a POST request to the
+
+                //creates a POST request
                 private async Task login()
                 {
                     //create user object based off user credentials
                     var newLogin = new Library.LoginRequest("test", "user");
 
                     //http Post request
-                    await _httpClient.PostAsJsonAsync<Library.LoginRequest>("https:localhost:7466/login", newLogin);
+                    var response = await _httpClient.PostAsJsonAsync("https://localhost:7466/login", newLogin);
 
-                    //Save the User to the sessionStorage to denote the User is logged in
-                    await JS.InvokeVoidAsync("sessionStorage.setItem", "username", inputValue);
+                    //checks response status
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var user = await response.Content.ReadFromJsonAsync<Library.User>();
+
+                        if (user != null)
+                        {
+                            // Login success — store user in sessionStorage
+                            await JS.InvokeVoidAsync("sessionStorage.setItem", "username", user._username);
+                            Console.WriteLine("Login successful!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Login failed: User not found.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Server error. Try again later.");
+                    }
                 }
             }
         }
@@ -52,6 +71,10 @@
             <input type="text" @bind="password" /><br />
             <h3>Verify Password:</h3>
             <input type="text" @bind="secondPassword" /><br />
+            @if (password != "" & password != secondPassword)
+            {
+                <h2>Passwords do not match!</h2>
+            }
             <button @onclick="createAccount">Create</button>
             @code
             {
@@ -61,11 +84,16 @@
                 private async Task createAccount()
                 {
                     //create user object based off user credentials
-                    var user = new Library.CreateAccountObject(userName, password);
+                    var accountCreationRequest = new Library.CreateAccountObject(userName, password);
 
-                    await _httpClient.PostAsJsonAsync<Library.CreateAccountObject>("https:localhost:7466/login/create", user);
+                    Console.WriteLine("sending Account creation request");
+
+                    await _httpClient.PostAsJsonAsync<Library.CreateAccountObject>("https://localhost:7466/login/create", accountCreationRequest);
+
+                    Console.WriteLine("response recieved!");
                 }
             }
+
         }
         else if (activeTab == 2)
         {
