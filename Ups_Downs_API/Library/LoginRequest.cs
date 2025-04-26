@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Library
@@ -10,11 +11,11 @@ namespace Library
     public class LoginRequest
     {
         [Required]
-        public string _username;
+        public string Username { get; set; }
 
         [Required]
-        public string _password;
-
-        public LoginRequest(string un, string pw) { _username = un; _password = pw; }
+        public string Password { get; set; }
+        [JsonConstructor]
+        public LoginRequest(string username, string password) { Username = username; Password = password; }
     }
 }

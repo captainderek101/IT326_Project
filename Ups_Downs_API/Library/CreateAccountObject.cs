@@ -1,20 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Library
 {
     public class CreateAccountObject
     {
         [Required]
-        public string _username;
+        public string Username { get; set; }
 
         [Required]
-        public string _password;
+        public string Password { get; set; }
 
-        public CreateAccountObject(string un, string pw) { _username = un; _password = pw; }
+        [JsonConstructor]
+        public CreateAccountObject(string username, string password)
+        {
+            Username = username;
+            Password = password;
+        }
     }
 }
