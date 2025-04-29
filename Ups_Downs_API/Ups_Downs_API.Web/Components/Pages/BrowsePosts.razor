@@ -15,14 +15,14 @@
 
     private string filter = "";
 
-    private List<Library.Post>? returnInfo;
+    private List<Library.PostObject>? returnInfo;
 
     [Inject]
     private HttpClient _httpClient { get; set; }
 
     private async Task RetrievePosts()
     {
-        returnInfo = await _httpClient.GetFromJsonAsync<List<Library.Post>>("https://localhost:7466/BrowsePosts");
+        returnInfo = await _httpClient.GetFromJsonAsync<List<Library.PostObject>>("https://localhost:7466/BrowsePosts");
 
     }
 }
