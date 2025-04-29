@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Components;
 using System.Runtime.InteropServices;
 using Ups_Downs_API.Web;
 using Ups_Downs_API.Web.Components;
@@ -14,6 +15,8 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddOutputCache();
+
+//builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 var app = builder.Build();
 

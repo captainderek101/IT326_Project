@@ -5,43 +5,61 @@
 @using System.Net.Http.Json
 @using System.Text.Json
 <h3>View Post</h3>
+@if (post == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <p>@post.Content</p>
+}
 
 <button class="btn btn-primary" @onclick="CallReport_POST">Report Post</button>
 
 <form @onsubmit="CallSubscribe_POST">
     <label for="email">Email Address:</label>
-    <input type="text" id="email" name="emailaddress"><br><br>
+    <input type="text" @bind="emailAddress"><br><br>
     <input type="submit" value="Submit">
 </form>
 
-<button class="btn btn-primary" @onclick="CallVote_PUT">Upvote Post</button>
+<button class="btn btn-primary" @onclick="@(e => CallVote_PUT(true, false))">Upvote Post</button>
+<button class="btn btn-primary" @onclick="@(e => CallVote_PUT(false, true))">Downvote Post</button>
 
 <form @onsubmit="CallComment_POST">
     <label for="comment">Comment:</label>
-    <input type="text" id="comment" name="contents"><br><br>
+    <input type="text" @bind="commentContents"><br><br>
     <input type="submit" value="Submit">
 </form>
-
-<!-- small “text‑box thing” showing what will be sent -->
-@if (!string.IsNullOrWhiteSpace(_responseJson))
-{
-    <div class="mt-3">
-        <label class="form-label">API response body</label>
-        <textarea class="form-control small" rows="6" readonly>
-            @_responseJson
-                </textarea>
-    </div>
-}
 
 @code {
     [Inject]
     private HttpClient _httpClient { get; set; }
-    private string _responseJson = ""; //captures the response from the API
+
+    private PostObject post;
+
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public int? Id { get; set; }
+
+    private string emailAddress = "";
+    private string commentContents = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id.HasValue)
+        {
+            post = await _httpClient.GetFromJsonAsync<Library.PostObject>($"https://localhost:7466/view?id={Id.Value}");
+        }
+        else
+        {
+            post = await _httpClient.GetFromJsonAsync<Library.PostObject>($"https://localhost:7466/view");
+        }
+    }
 
     private async Task CallReport_POST()
     {
         //create an object
-        var myObject = new Library.ReportRequest(0, 0);
+        var myObject = new Library.ReportRequest(1, 1);
 
         //add logic to populate the object
 
@@ -52,10 +70,10 @@
         var rawContent = await response.Content.ReadAsStringAsync();
     }
 
-    private async Task CallVote_PUT()
+    private async Task CallVote_PUT(bool upvote, bool downvote)
     {
         //create an object
-        var myObject = new Library.VoteRequest(0, 0, true, false);
+        var myObject = new Library.VoteRequest(1, 1, upvote, downvote);
 
         //add logic to populate the object
 
@@ -69,7 +87,7 @@
     private async Task CallComment_POST()
     {
         //create an object
-        var myObject = new Library.CommentObject(0, 0, "test");
+        var myObject = new Library.CommentObject(1, 1, commentContents);
 
         //add logic to populate the object
 
@@ -78,23 +96,12 @@
         //PostAsJsonAsync will serialize the object to JSON for you
         var response = await _httpClient.PostAsJsonAsync<Library.CommentObject>("https://localhost:7466/view/comment", myObject);
         var rawContent = await response.Content.ReadAsStringAsync();
-        // prints if the body is JSON - used to see what API responds with
-        try
-        {
-            var jsonElem = JsonSerializer.Deserialize<JsonElement>(rawContent);
-            _responseJson = JsonSerializer.Serialize(
-                jsonElem, new JsonSerializerOptions { WriteIndented = true });
-        }
-        catch
-        {
-            _responseJson = rawContent; // not JSON or bad format – keep raw
-        }
     }
 
     private async Task CallSubscribe_POST()
     {
         //create an object
-        var myObject = new Library.SubscriptionRequest(0, 0, "test@test.com", true);
+        var myObject = new Library.SubscriptionRequest(1, 1, emailAddress, true);
 
         //add logic to populate the object
 
