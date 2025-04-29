@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Library
@@ -10,17 +11,18 @@ namespace Library
     public class User
     {
         [Required]
-        public string _username { get; set; }
+        public string Username { get; set; }
 
         [Required]
-        public string? _password { get; set; }
-        public string? _email { get; set; }
+        public string Password { get; set; }
+        public string? Email { get; set; }
 
-        public User(string name, string pw, string em)
+        [JsonConstructor]
+        public User(string username, string password, string? email)
         {
-            _username = name;
-            _password = pw;
-            _email = em;
+            Username = username;
+            Password = password;
+            Email = email;
         }
     }
 }

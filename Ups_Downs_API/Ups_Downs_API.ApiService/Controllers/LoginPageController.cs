@@ -18,6 +18,7 @@ namespace Ups_Downs_API.ApiService.Controllers
         [HttpPost]
         public ActionResult<User> recieveLoginPostRequest([FromBody] LoginRequest userLoginAttempt)
         {
+            Console.WriteLine("HTTP POST request recieved to Log into account");
             //validating the model, if model is invalid send a BadRequest
             if (!ModelState.IsValid)
                 return BadRequest("Missing Requirments");
