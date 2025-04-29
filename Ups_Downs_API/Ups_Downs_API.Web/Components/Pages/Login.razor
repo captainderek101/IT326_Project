@@ -12,7 +12,7 @@
     public string sessionItem = "";
     public string returninfo = "";
 
-    protected override async Task OnAfterRenderAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         // Check if user is already logged in
         var UserJson = await JS.InvokeAsync<string>("sessionStorage.getItem", "user");
