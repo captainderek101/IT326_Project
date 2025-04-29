@@ -2,6 +2,32 @@
 @rendermode InteractiveServer
 @inject IJSRuntime JS
 
+@code {
+    [Inject]
+    private HttpClient _httpClient { get; set; }
+
+    public Library.User User = null;
+
+    public string inputValue = "";
+    public string sessionItem = "";
+    public string returninfo = "";
+
+    protected override async Task OnAfterRenderAsync()
+    {
+        // Check if user is already logged in
+        var UserJson = await JS.InvokeAsync<string>("sessionStorage.getItem", "user");
+        Console.WriteLine("OnAfterRenderAsync");
+        if (!string.IsNullOrEmpty(UserJson))
+        {
+            User = System.Text.Json.JsonSerializer.Deserialize<Library.User>(UserJson);
+        }
+        else
+        {
+            User = null;
+        }
+    }
+}
+
 <div>
     @if (User == null)
     {
@@ -34,7 +60,7 @@
                 private async Task login()
                 {
                     //create user object based off user credentials
-                    var newLogin = new Library.LoginRequest("test", "user");
+            var newLogin = new Library.LoginRequest(userName, password);
 
                     //http Post request
                     var response = await _httpClient.PostAsJsonAsync("https://localhost:7466/login", newLogin);
@@ -47,7 +73,7 @@
                         if (user != null)
                         {
                             // Login success — store user in sessionStorage
-                            await JS.InvokeVoidAsync("sessionStorage.setItem", "username", user._username);
+                            await JS.InvokeVoidAsync("sessionStorage.setItem", "user", user);
                             Console.WriteLine("Login successful!");
                         }
                         else
@@ -70,7 +96,9 @@
             <h3>password:</h3>
             <input type="text" @bind="password" /><br />
             <h3>Verify Password:</h3>
-            <input type="text" @bind="secondPassword" /><br />
+            <input type="text" @onChange="@((ChangeEventArgs e)=>secondPassword = e.Value.ToString())" />
+
+            <br />
             @if (password != "" & password != secondPassword)
             {
                 <h2>Passwords do not match!</h2>
@@ -141,16 +169,6 @@
 </div>
 
 @code {
-    public Library.User User = null;
-    
-    public string inputValue = "";
-    public string sessionItem = "";
-    public string returninfo = "";
-
-    private readonly IJSRuntime _jsRuntime;
-
-    [Inject]
-    private HttpClient _httpClient { get; set; }
 
     private async Task validateEmail()
     {

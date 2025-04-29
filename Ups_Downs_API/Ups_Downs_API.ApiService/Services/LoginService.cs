@@ -16,13 +16,14 @@ namespace Ups_Downs_API.ApiService.Services
         }
 
         //private readonly DbContext
-        public User ProcessLoginPost(LoginRequest obj)
+        public User ProcessLoginPost(LoginRequest loginAttempt)
         {
             User user = new User("username", "password", "email");
             //TODO: database connection
 
             using (var context = _contextFactory.CreateDbContext())
             {
+                Console.WriteLine("Entered DB connection in LoginService for login attempt");
                 var connection = (SqlConnection)context.Database.GetDbConnection();
                 connection.Open();
 
@@ -31,8 +32,10 @@ namespace Ups_Downs_API.ApiService.Services
                     connection
                 );
 
-                command.Parameters.AddWithValue("@username", obj.Username);
-                command.Parameters.AddWithValue("@password", obj.Password); // Make sure password is hashed if you hash during storage
+                command.Parameters.AddWithValue("@username", loginAttempt.Username);
+                command.Parameters.AddWithValue("@password", loginAttempt.Password); // Make sure password is hashed if you hash during storage
+
+                Console.WriteLine($"Attempting login with username: {loginAttempt.Username}, password: {loginAttempt.Password}");
 
                 var reader = command.ExecuteReader();
 
@@ -42,9 +45,12 @@ namespace Ups_Downs_API.ApiService.Services
                     string pw = reader.GetString(1);
                     string? email = reader.IsDBNull(2) ? null : reader.GetString(2);
 
+                    Console.Write("Found account for ");
+                    Console.WriteLine(uname);
+
                     return new User(uname, pw, email);
                 }
-
+                Console.WriteLine("No Account Found");
                 return null; // No matching user
             }
         }
@@ -54,7 +60,7 @@ namespace Ups_Downs_API.ApiService.Services
             // TODO: DB connection here
             using (var context = _contextFactory.CreateDbContext())
             {
-                Console.WriteLine("Entered DB connection in LoginService");
+                Console.WriteLine("Entered DB connection in LoginService for account creation");
                 var connection = (SqlConnection)context.Database.GetDbConnection();
                 connection.Open();
 
