@@ -16,17 +16,18 @@ namespace Ups_Downs_API.ApiService.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Post>> recieveBrowseRequest([FromBody] string filter)
+        public ActionResult<List<PostObject>> recieveBrowseRequest([FromQuery(Name = "filterType")] string filterType, [FromQuery(Name = "filterValue")] string filterValue)
         {
-            Console.WriteLine("Recieved Browse Request in Controller");
             //validating the model, if model is invalid send a BadRequest
-            
-            //return BadRequest("Missing Requirments");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             //service logic
-            _BrowseService.ProcessBrowse(filter);
+            var postList = _BrowseService.ProcessBrowse(filterType, filterValue);
 
-            return Ok("successful Browse");
+            return Ok(postList);
         }
     }
 }
