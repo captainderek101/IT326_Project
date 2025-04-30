@@ -9,7 +9,7 @@
     private async Task CallRequest()
     {
         //create an object
-        var myObject = new Library.SkeletonObject();
+        var myObject = new Library.SkeletonObject("test", "test");
 
         // Make a GET request to the API and store the response
         myObject = await _httpClient.GetFromJsonAsync<Library.SkeletonObject>("https://localhost:7466/skeleton");
@@ -18,7 +18,7 @@
     private async Task CallPost()
     {
         //create an object
-        var myObject = new Library.SkeletonObject();
+        var myObject = new Library.SkeletonObject("test", "test");
 
         //add logic to populate the object
 
