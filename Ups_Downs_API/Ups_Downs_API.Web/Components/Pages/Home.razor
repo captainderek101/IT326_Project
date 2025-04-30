@@ -4,25 +4,33 @@
 <PageTitle>Home</PageTitle>
 
 <h1>Welcome to Ups & Downs!</h1>
+<button class="btn btn-primary" @onclick="getCurrentEvents">Display current events</button>
 
 <p>@events.positiveMessage</p>
 
-<p>@events.articles[0].DisplayArticle()</p>
+@if (events.articles.Count() > 2){
+    <p>@events.articles[0].DisplayArticle()</p>
 
-<p>@events.articles[1].DisplayArticle()</p>
+    <p>@events.articles[1].DisplayArticle()</p>
 
-<p>@events.articles[2].DisplayArticle()</p>
+    <p>@events.articles[2].DisplayArticle()</p>
+}
 
 @code {
 
-    Library.CurrentEvents events =  Library.CurrentEvents.dummy();
+    Library.CurrentEvents events = new Library.CurrentEvents();
 
     [Inject]
     private HttpClient _httpClient { get; set; }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    private async Task getCurrentEvents()
     {
         //Get current events object to place them inside respective values
-        events = await _httpClient.GetFromJsonAsync<Library.CurrentEvents>("https://localhost:7466/Home");
+        events.positiveMessage = "die";
+        for (int i = 0; i < 3; i++)
+        {
+            events.articles.Add(new Library.NewsArticle("number: " + (i + i), "URL"));
+        }
+        //events = await _httpClient.GetFromJsonAsync<Library.CurrentEvents>("https://localhost:7466/Home");
     }
 }

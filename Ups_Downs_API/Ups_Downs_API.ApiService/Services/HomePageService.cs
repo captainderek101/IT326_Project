@@ -42,7 +42,6 @@ namespace Ups_Downs_API.ApiService.Services
             {
                 currentEvents.articles.Add(new NewsArticle("number: " + (i + i), "URL"));
             }
-
             return currentEvents;
         }
     }

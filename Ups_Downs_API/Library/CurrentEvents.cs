@@ -10,20 +10,10 @@ namespace Library
     {
         public string positiveMessage { get; set; }
         public List<NewsArticle> articles { get; set; }
-        
+
         public CurrentEvents()
         {
-            articles = new List<NewsArticle>();            
-        }
-        public static CurrentEvents dummy()
-        {
-            CurrentEvents temp = new();
-            temp.positiveMessage = "you can do it";
-            for (int i = 0; i < 3; i++)
-            {
-                temp.articles.Add(new NewsArticle("number " + i, "URL"));
-            }
-            return temp;
+            articles = new List<NewsArticle>();
         }
     }
 }
