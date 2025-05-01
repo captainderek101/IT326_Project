@@ -11,6 +11,9 @@ namespace Library
     public class User
     {
         [Required]
+        public int UserID { get; set; }
+
+        [Required]
         public string Username { get; set; }
 
         [Required]
@@ -18,7 +21,15 @@ namespace Library
         public string? Email { get; set; }
 
         [JsonConstructor]
-        public User(string username, string password, string? email)
+        public User(int userID, string username, string password, string? email)
+        {
+            UserID = userID;
+            Username = username;
+            Password = password;
+            Email = email;
+        }
+
+        public User( string username, string password, string? email)
         {
             Username = username;
             Password = password;
