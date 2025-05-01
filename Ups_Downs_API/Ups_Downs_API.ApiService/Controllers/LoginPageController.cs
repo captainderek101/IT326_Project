@@ -18,6 +18,7 @@ namespace Ups_Downs_API.ApiService.Controllers
         [HttpPost]
         public ActionResult<User> recieveLoginPostRequest([FromBody] LoginRequest userLoginAttempt)
         {
+            Console.WriteLine("");
             Console.WriteLine("HTTP POST request recieved to Log into account");
             //validating the model, if model is invalid send a BadRequest
             if (!ModelState.IsValid)
@@ -35,12 +36,11 @@ namespace Ups_Downs_API.ApiService.Controllers
         [HttpPost("create")]
         public IActionResult recieveAccountCreationPostRequest([FromBody] CreateAccountObject accountCreationRequest)
         {
+            Console.WriteLine("");
             Console.WriteLine("HTTP POST request recieved to create an account");
             //validating the model, if model is invalid send a BadRequest
             if (!ModelState.IsValid)
                 return BadRequest("Missing Requirments");
-
-            Console.WriteLine("Model Validated");
 
             //service logic
             if (!_loginService.ProcessAccountCreationPost(accountCreationRequest))
@@ -52,6 +52,8 @@ namespace Ups_Downs_API.ApiService.Controllers
         [HttpPost("forgotpw")]
         public IActionResult recieveForgotPwPostRequest([FromBody] ForgotPasswordObject receivedObject)
         {
+            Console.WriteLine("");
+            Console.WriteLine("HTTP POST request recieved to change a forgotten password");
             //logic for service file connection
             //validating the model, if model is not valid send a BadRequest
             if (!ModelState.IsValid)
@@ -64,22 +66,26 @@ namespace Ups_Downs_API.ApiService.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult recieveUpdateAccountPostRequest([FromBody] User receivedObject)
+        public ActionResult<User> recieveUpdateAccountPostRequest([FromBody] User receivedObject)
         {
+            Console.WriteLine("");
+            Console.WriteLine("HTTP POST request recieved to update an account");
             //logic for service file connection
             //validating the model, if model is not valid send a BadRequest
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-
+            Console.WriteLine("Model is valid");
             //service logic
-            _loginService.ProcessUpdateAccountPost(receivedObject);
+            var updatedUser = _loginService.ProcessUpdateAccountPost(receivedObject);
 
-            return Ok();
+            return Ok(updatedUser);
         }
 
         [HttpPost("validate")]
         public IActionResult recieveEmailValidationPostRequest([FromBody] User receivedObject)
         {
+            Console.WriteLine("");
+            Console.WriteLine("HTTP POST request recieved to validate an account");
             //logic for service file connection
             //validating the model, if model is not valid send a BadRequest
             if (!ModelState.IsValid)

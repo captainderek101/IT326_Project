@@ -3,24 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\miwem\\Desktop\\Networkingdistributedparallel\\Program1\\IT326_Project\\Ups_Downs_API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{13AC501D-68BD-46D2-8531-136D8326CDF4}|Ups_Downs_API.Web\\Ups_Downs_API.Web.csproj|c:\\users\\miwem\\desktop\\networkingdistributedparallel\\program1\\it326_project\\ups_downs_api\\ups_downs_api.web\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{13AC501D-68BD-46D2-8531-136D8326CDF4}|Ups_Downs_API.Web\\Ups_Downs_API.Web.csproj|solutionrelative:ups_downs_api.web\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|c:\\users\\miwem\\desktop\\networkingdistributedparallel\\program1\\it326_project\\ups_downs_api\\ups_downs_api.apiservice\\controllers\\loginpagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|solutionrelative:ups_downs_api.apiservice\\controllers\\loginpagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|c:\\users\\miwem\\desktop\\networkingdistributedparallel\\program1\\it326_project\\ups_downs_api\\ups_downs_api.apiservice\\services\\loginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|solutionrelative:ups_downs_api.apiservice\\services\\loginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{13AC501D-68BD-46D2-8531-136D8326CDF4}|Ups_Downs_API.Web\\Ups_Downs_API.Web.csproj|c:\\users\\miwem\\desktop\\networkingdistributedparallel\\program1\\it326_project\\ups_downs_api\\ups_downs_api.web\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{13AC501D-68BD-46D2-8531-136D8326CDF4}|Ups_Downs_API.Web\\Ups_Downs_API.Web.csproj|solutionrelative:ups_downs_api.web\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DAEC5AEA-377D-4144-99E7-F359A73D531B}|Library\\Library.csproj|c:\\users\\miwem\\desktop\\networkingdistributedparallel\\program1\\it326_project\\ups_downs_api\\library\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DAEC5AEA-377D-4144-99E7-F359A73D531B}|Library\\Library.csproj|solutionrelative:library\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DAEC5AEA-377D-4144-99E7-F359A73D531B}|Library\\Library.csproj|c:\\users\\miwem\\desktop\\networkingdistributedparallel\\program1\\it326_project\\ups_downs_api\\library\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DAEC5AEA-377D-4144-99E7-F359A73D531B}|Library\\Library.csproj|solutionrelative:library\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|c:\\users\\miwem\\desktop\\networkingdistributedparallel\\program1\\it326_project\\ups_downs_api\\ups_downs_api.apiservice\\controllers\\loginpagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|solutionrelative:ups_downs_api.apiservice\\controllers\\loginpagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|c:\\users\\miwem\\desktop\\networkingdistributedparallel\\program1\\it326_project\\ups_downs_api\\ups_downs_api.apiservice\\services\\loginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|solutionrelative:ups_downs_api.apiservice\\services\\loginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,65 +30,52 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "LoginRequest.cs",
-              "DocumentMoniker": "C:\\Users\\miwem\\Desktop\\Networkingdistributedparallel\\Program1\\IT326_Project\\Ups_Downs_API\\Library\\LoginRequest.cs",
-              "RelativeDocumentMoniker": "Library\\LoginRequest.cs",
-              "ToolTip": "C:\\Users\\miwem\\Desktop\\Networkingdistributedparallel\\Program1\\IT326_Project\\Ups_Downs_API\\Library\\LoginRequest.cs",
-              "RelativeToolTip": "Library\\LoginRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T20:40:14.053Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\miwem\\Desktop\\Networkingdistributedparallel\\Program1\\IT326_Project\\Ups_Downs_API\\Library\\User.cs",
               "RelativeDocumentMoniker": "Library\\User.cs",
               "ToolTip": "C:\\Users\\miwem\\Desktop\\Networkingdistributedparallel\\Program1\\IT326_Project\\Ups_Downs_API\\Library\\User.cs",
               "RelativeToolTip": "Library\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAiwBQAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T20:03:16.861Z",
+              "WhenOpened": "2025-04-30T19:04:24.863Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Login.razor",
               "DocumentMoniker": "C:\\Users\\miwem\\Desktop\\Networkingdistributedparallel\\Program1\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Web\\Components\\Pages\\Login.razor",
               "RelativeDocumentMoniker": "Ups_Downs_API.Web\\Components\\Pages\\Login.razor",
               "ToolTip": "C:\\Users\\miwem\\Desktop\\Networkingdistributedparallel\\Program1\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Web\\Components\\Pages\\Login.razor",
               "RelativeToolTip": "Ups_Downs_API.Web\\Components\\Pages\\Login.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABGAAAAAAAAAA==",
+              "ViewState": "AgIAAJYAAAAAAAAAAAAAANEAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-04-10T20:17:46.281Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "LoginPageController.cs",
               "DocumentMoniker": "C:\\Users\\miwem\\Desktop\\Networkingdistributedparallel\\Program1\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.ApiService\\Controllers\\LoginPageController.cs",
               "RelativeDocumentMoniker": "Ups_Downs_API.ApiService\\Controllers\\LoginPageController.cs",
               "ToolTip": "C:\\Users\\miwem\\Desktop\\Networkingdistributedparallel\\Program1\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.ApiService\\Controllers\\LoginPageController.cs",
               "RelativeToolTip": "Ups_Downs_API.ApiService\\Controllers\\LoginPageController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAABQAAAAAAAAAA==",
+              "ViewState": "AgIAACYAAAAAAAAAAAAgwBQAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-10T20:13:53.694Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "LoginService.cs",
               "DocumentMoniker": "C:\\Users\\miwem\\Desktop\\Networkingdistributedparallel\\Program1\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.ApiService\\Services\\LoginService.cs",
               "RelativeDocumentMoniker": "Ups_Downs_API.ApiService\\Services\\LoginService.cs",
               "ToolTip": "C:\\Users\\miwem\\Desktop\\Networkingdistributedparallel\\Program1\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.ApiService\\Services\\LoginService.cs",
               "RelativeToolTip": "Ups_Downs_API.ApiService\\Services\\LoginService.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAkwC8AAAA4AAAAAAAAAA==",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAgwI0AAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-28T20:57:21.122Z",
               "EditorCaption": ""
