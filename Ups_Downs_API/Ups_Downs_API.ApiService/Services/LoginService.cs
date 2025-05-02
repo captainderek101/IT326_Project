@@ -1,8 +1,8 @@
 ﻿using Library;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using System.Data;
 using Ups_Downs_API.ApiService.Database;
+using BCrypt.Net;
 
 namespace Ups_Downs_API.ApiService.Services
 {
@@ -29,14 +29,12 @@ namespace Ups_Downs_API.ApiService.Services
                 connection.Open();
 
                 var command = new SqlCommand(
-                    "SELECT userID, username, passwordHash, emailAddress FROM Users WHERE username = @username AND passwordHash = @password;",
+                    "SELECT userID, username, passwordHash, emailAddress FROM Users WHERE username = @username",
                     connection
                 );
 
                 command.Parameters.AddWithValue("@username", loginAttempt.Username);
-                command.Parameters.AddWithValue("@password", loginAttempt.Password); // Make sure password is hashed if you hash during storage
-
-                Console.WriteLine($"Attempting login with username: {loginAttempt.Username}, password: {loginAttempt.Password}");
+                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(loginAttempt.Password);
 
                 var reader = command.ExecuteReader();
 
@@ -52,7 +50,10 @@ namespace Ups_Downs_API.ApiService.Services
                     Console.Write(" , ID: ");
                     Console.WriteLine(id);
 
-                    return new User(id, uname, pw, email);
+                    if (BCrypt.Net.BCrypt.Verify(loginAttempt.Password, hashedPassword))
+                        return new User(id, uname, pw, email);
+
+                    return null;
                 }
                 Console.WriteLine("No Account Found");
                 return null; // No matching user
@@ -71,7 +72,8 @@ namespace Ups_Downs_API.ApiService.Services
                 var command = new SqlCommand("INSERT INTO Users (username, passwordHash) VALUES (@username, @passwordHash)", connection);
 
                 command.Parameters.AddWithValue("@username", obj.Username);
-                command.Parameters.AddWithValue("@passwordHash", obj.Password);
+                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(obj.Password);
+                command.Parameters.AddWithValue("@passwordHash", hashedPassword);
 
                 try
                 {

@@ -122,20 +122,20 @@
 
             @code
             {
-        public string secondPassword = "";
+                public string secondPassword = "";
 
-        //function to create a HTTP POST request to create an account
-        private async Task createAccount()
-        {
-            //create user object based off user credentials
-            var accountCreationRequest = new Library.CreateAccountObject(userName, password);
+                //function to create a HTTP POST request to create an account
+                private async Task createAccount()
+                {
+                    //create user object based off user credentials
+                    var accountCreationRequest = new Library.CreateAccountObject(userName, password);
 
-            Console.WriteLine("sending Account creation request");
+                    Console.WriteLine("sending Account creation request");
 
-            await _httpClient.PostAsJsonAsync<Library.CreateAccountObject>("https://localhost:7466/login/create", accountCreationRequest);
+                    await _httpClient.PostAsJsonAsync<Library.CreateAccountObject>("https://localhost:7466/login/create", accountCreationRequest);
 
-            Console.WriteLine("response recieved!");
-        }
+                    Console.WriteLine("response recieved!");
+                }
             }
 
         }
@@ -149,14 +149,14 @@
             <button @onclick="forgotPw">Send Email Verification</button>
             @code
             {
-        public string email = "";
-        private async Task forgotPw()
-        {
-            //create user object based off user credentials
-            var user = new Library.ForgotPasswordObject(userName, password);
+                public string email = "";
+                private async Task forgotPw()
+                {
+                    //create user object based off user credentials
+                    var user = new Library.ForgotPasswordObject(userName, password);
 
-            await _httpClient.PostAsJsonAsync<Library.ForgotPasswordObject>("https://localhost:7466/login/forgotpw", user);
-        }
+                    await _httpClient.PostAsJsonAsync<Library.ForgotPasswordObject>("https://localhost:7466/login/forgotpw", user);
+                }
             }
         }
         <p>@returninfo</p>
@@ -175,6 +175,7 @@
         <h3>Email: @User.Email </h3>
         <input type="text" @bind="newEmail" />
         <button @onclick="updateAccount">Update Account Information</button>
+        <h3>@serverResponse</h3>
         @code 
         {
             public string newUsername = "";
@@ -201,12 +202,21 @@
                     User.Email = newEmail;
                 }
 
-                var json = System.Text.Json.JsonSerializer.Serialize(User);
-                Console.WriteLine($"calling update with {json}");
-                await _httpClient.PostAsJsonAsync<Library.User>("https://localhost:7466/login/update", User);
-                json = System.Text.Json.JsonSerializer.Serialize(User);
-                await JS.InvokeVoidAsync("sessionStorage.setItem", "user", json);
-                await OnAfterRenderAsync(true);
+                var response = await _httpClient.PostAsJsonAsync<Library.User>("https://localhost:7466/login/update", User);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    //store new user credentials in the system
+                    var json = System.Text.Json.JsonSerializer.Serialize(User);
+                    await JS.InvokeVoidAsync("sessionStorage.setItem", "user", json);
+
+                    await OnAfterRenderAsync(true);
+                }
+                else
+                {
+
+                }
+                
             }
         }
     }
