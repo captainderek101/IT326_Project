@@ -78,6 +78,9 @@ namespace Ups_Downs_API.ApiService.Controllers
             //service logic
             var updatedUser = _loginService.ProcessUpdateAccountPost(receivedObject);
 
+            if (updatedUser == null)
+                return Unauthorized("Invalid username or password");
+
             return Ok(updatedUser);
         }
 
