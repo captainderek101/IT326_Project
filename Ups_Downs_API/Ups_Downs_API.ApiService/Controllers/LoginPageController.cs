@@ -46,7 +46,7 @@ namespace Ups_Downs_API.ApiService.Controllers
             if (!_loginService.ProcessAccountCreationPost(accountCreationRequest))
                 return StatusCode(500, "Account already Exists");
 
-            return Created();
+            return Ok("Account Created");
         }
 
         [HttpPost("forgotpw")]
@@ -79,7 +79,7 @@ namespace Ups_Downs_API.ApiService.Controllers
             var updatedUser = _loginService.ProcessUpdateAccountPost(receivedObject);
 
             if (updatedUser == null)
-                return Unauthorized("Invalid username or password");
+                return Unauthorized("Username Already Taken");
 
             return Ok(updatedUser);
         }
