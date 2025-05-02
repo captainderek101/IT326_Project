@@ -27,7 +27,7 @@
             {
                 User = null;
             }
-
+            serverResponse = "";
             StateHasChanged();
         }
     }
@@ -46,6 +46,7 @@
         private void switchTab(int tab)
         {
             activeTab = tab;
+            serverResponse = "";
         }
         }
         @if (activeTab == 0) //Login tab display
@@ -132,9 +133,10 @@
 
                     Console.WriteLine("sending Account creation request");
 
-                    await _httpClient.PostAsJsonAsync<Library.CreateAccountObject>("https://localhost:7466/login/create", accountCreationRequest);
+                    var response = await _httpClient.PostAsJsonAsync<Library.CreateAccountObject>("https://localhost:7466/login/create", accountCreationRequest);
 
                     Console.WriteLine("response recieved!");
+                    serverResponse = await response.Content.ReadAsStringAsync();
                 }
             }
 
@@ -173,7 +175,7 @@
 
         <br />
         <h3>Email: @User.Email </h3>
-        <input type="text" @bind="newEmail" />
+        <input type="text" @bind="newEmail" @bind:event="oninput" />
         <button @onclick="updateAccount">Update Account Information</button>
         <h3>@serverResponse</h3>
         @code 
@@ -184,6 +186,14 @@
 
             private async Task updateAccount()
             {
+                var emailPattern = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$";
+                var regex = new System.Text.RegularExpressions.Regex(emailPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+                if (!string.IsNullOrWhiteSpace(newEmail) && !regex.IsMatch(newEmail))
+                {
+                    serverResponse = "Invalid email format.";
+                    return;
+                }
 
                 if (!string.IsNullOrWhiteSpace(newUsername) && User.Username != newUsername)
                 {
@@ -214,7 +224,7 @@
                 }
                 else
                 {
-
+                    serverResponse = await response.Content.ReadAsStringAsync();
                 }
                 
             }
