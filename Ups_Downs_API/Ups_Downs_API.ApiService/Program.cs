@@ -17,7 +17,6 @@ builder.Services.AddControllers();
 
 // Sample service file below - registering for dependency injection
 builder.Services.AddScoped<SkeletonService>();
-builder.Services.AddScoped<BrowseService>();
 builder.Services.AddScoped<HomePageService>();
 
 var connectionString =

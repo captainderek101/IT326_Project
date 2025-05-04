@@ -74,7 +74,7 @@ namespace Ups_Downs_API.ApiService.Services
                     command.ExecuteNonQuery();
 
                     // Insert world news api key here!
-                    string apiKey = "c9d94381de234cb595e7ca4dcb920320";
+                    string apiKey = "2d93279549b143a99363d2c75aa1de95";
                     // Copied shamelessly from the exapmle given
                     Configuration config = new Configuration();
                     config.BasePath = "https://api.worldnewsapi.com";
@@ -211,7 +211,7 @@ namespace Ups_Downs_API.ApiService.Services
                     command.Parameters.AddWithValue("@time", today);
 
                     command.ExecuteNonQuery();
-                    }
+                }
                 connection.Close();
             }
             return currentEvents;
