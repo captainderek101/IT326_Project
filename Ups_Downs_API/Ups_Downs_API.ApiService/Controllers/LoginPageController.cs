@@ -49,22 +49,6 @@ namespace Ups_Downs_API.ApiService.Controllers
             return Ok("Account Created");
         }
 
-        [HttpPost("forgotpw")]
-        public IActionResult recieveForgotPwPostRequest([FromBody] ForgotPasswordObject receivedObject)
-        {
-            Console.WriteLine("");
-            Console.WriteLine("HTTP POST request recieved to change a forgotten password");
-            //logic for service file connection
-            //validating the model, if model is not valid send a BadRequest
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            //service logic
-            _loginService.ProcessForgotPwPost(receivedObject);
-
-            return Ok();
-        }
-
         [HttpPost("update")]
         public ActionResult<User> recieveUpdateAccountPostRequest([FromBody] User receivedObject)
         {
@@ -82,23 +66,6 @@ namespace Ups_Downs_API.ApiService.Controllers
                 return Unauthorized("Username Already Taken");
 
             return Ok(updatedUser);
-        }
-
-        [HttpPost("validate")]
-        public IActionResult recieveEmailValidationPostRequest([FromBody] User receivedObject)
-        {
-            Console.WriteLine("");
-            Console.WriteLine("HTTP POST request recieved to validate an account");
-            //logic for service file connection
-            //validating the model, if model is not valid send a BadRequest
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            //service logic
-            if (!_loginService.ProcessEmailValidationPost(receivedObject))
-                return StatusCode(500, "");
-
-            return Ok();
         }
     }
 }

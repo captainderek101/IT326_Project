@@ -38,7 +38,6 @@
     {
         <button @onclick="() => switchTab(0)">Login</button>
         <button @onclick="() => switchTab(1)">Create Account</button>
-        <button @onclick="() => switchTab(2)">Forgot Password</button>
         @code
         {
         public int activeTab = 0;
@@ -141,26 +140,6 @@
             }
 
         }
-        else if (activeTab == 2) //Forgot Password tab display
-        {
-            <h1>Forgot Password</h1>
-            <h3>username:</h3>
-            <input type="text" @bind="userName" /><br />
-            <h3>Email:</h3>
-            <input type="text" @bind="email" /><br />
-            <button @onclick="forgotPw">Send Email Verification</button>
-            @code
-            {
-                public string email = "";
-                private async Task forgotPw()
-                {
-                    //create user object based off user credentials
-                    var user = new Library.ForgotPasswordObject(userName, password);
-
-                    await _httpClient.PostAsJsonAsync<Library.ForgotPasswordObject>("https://localhost:7466/login/forgotpw", user);
-                }
-            }
-        }
         <p>@returninfo</p>
     }
     else //User logged in Edit Account tab display
@@ -231,14 +210,3 @@
         }
     }
 </div>
-
-@code {
-
-    private async Task validateEmail()
-    {
-        //create user object based off user credentials
-        var user = new Library.User(userName, password, email);
-
-        await _httpClient.PostAsJsonAsync<Library.User>("https:localhost:7466/login/forgotpw", user);
-    }
-}
