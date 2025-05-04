@@ -17,8 +17,12 @@ builder.Services.AddControllers();
 
 // Sample service file below - registering for dependency injection
 builder.Services.AddScoped<SkeletonService>();
+<<<<<<< HEAD
 builder.Services.AddScoped<ViewPostService>();
 builder.Services.AddScoped<CreatingPostService>();
+=======
+builder.Services.AddScoped<HomePageService>();
+>>>>>>> 63b2145 (New Branch with only the home page functional)
 
 var connectionString =
     builder.Configuration.GetConnectionString("DefaultConnection")
