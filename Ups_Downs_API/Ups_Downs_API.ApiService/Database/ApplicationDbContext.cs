@@ -11,4 +11,8 @@ namespace Ups_Downs_API.ApiService.Database
 
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> HomePageBranch

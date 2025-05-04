@@ -1,5 +1,6 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "WorkspaceRootPath": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\",
   "Documents": [
     {
@@ -11,6 +12,11 @@
       "AbsoluteMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|c:\\users\\super\\it326_project\\ups_downs_api\\ups_downs_api.apiservice\\controllers\\viewpostcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|solutionrelative:ups_downs_api.apiservice\\controllers\\viewpostcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
 =======
+=======
+  "WorkspaceRootPath": "C:\\Users\\dmontg1\\source\\repos\\IT326_Project\\Ups_Downs_API\\",
+  "Documents": [
+    {
+>>>>>>> HomePageBranch
       "AbsoluteMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|c:\\users\\dmontg1\\source\\repos\\it326_project\\ups_downs_api\\ups_downs_api.apiservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|solutionrelative:ups_downs_api.apiservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -25,6 +31,7 @@
     {
       "AbsoluteMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|c:\\users\\dmontg1\\source\\repos\\it326_project\\ups_downs_api\\ups_downs_api.apiservice\\controllers\\homepagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|solutionrelative:ups_downs_api.apiservice\\controllers\\homepagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+<<<<<<< HEAD
 >>>>>>> 63b2145 (New Branch with only the home page functional)
     },
     {
@@ -34,6 +41,12 @@
     {
       "AbsoluteMoniker": "D:0:0:{13AC501D-68BD-46D2-8531-136D8326CDF4}|Ups_Downs_API.Web\\Ups_Downs_API.Web.csproj|c:\\users\\super\\it326_project\\ups_downs_api\\ups_downs_api.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{13AC501D-68BD-46D2-8531-136D8326CDF4}|Ups_Downs_API.Web\\Ups_Downs_API.Web.csproj|solutionrelative:ups_downs_api.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+=======
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AC501D-68BD-46D2-8531-136D8326CDF4}|Ups_Downs_API.Web\\Ups_Downs_API.Web.csproj|c:\\users\\dmontg1\\source\\repos\\it326_project\\ups_downs_api\\ups_downs_api.web\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{13AC501D-68BD-46D2-8531-136D8326CDF4}|Ups_Downs_API.Web\\Ups_Downs_API.Web.csproj|solutionrelative:ups_downs_api.web\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+>>>>>>> HomePageBranch
     }
   ],
   "DocumentGroupContainers": [
@@ -43,11 +56,46 @@
       "DocumentGroups": [
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
           "DockedWidth": 208,
           "SelectedChildIndex": 1,
+=======
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+>>>>>>> HomePageBranch
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\dmontg1\\source\\repos\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.ApiService\\Program.cs",
+              "RelativeDocumentMoniker": "Ups_Downs_API.ApiService\\Program.cs",
+              "ToolTip": "C:\\Users\\dmontg1\\source\\repos\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.ApiService\\Program.cs",
+              "RelativeToolTip": "Ups_Downs_API.ApiService\\Program.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABMAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-04T20:15:28.587Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Web\\Program.cs",
@@ -98,6 +146,16 @@
               "RelativeToolTip": "Ups_Downs_API.Tests\\WebTests.cs",
               "ViewState": "AgIAABYAAAAAAAAAAAAQwAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+=======
+              "DocumentIndex": 2,
+              "Title": "WebTests.cs",
+              "DocumentMoniker": "C:\\Users\\dmontg1\\source\\repos\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Tests\\WebTests.cs",
+              "RelativeDocumentMoniker": "Ups_Downs_API.Tests\\WebTests.cs",
+              "ToolTip": "C:\\Users\\dmontg1\\source\\repos\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Tests\\WebTests.cs",
+              "RelativeToolTip": "Ups_Downs_API.Tests\\WebTests.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+>>>>>>> HomePageBranch
               "WhenOpened": "2025-05-04T17:01:48.277Z",
               "EditorCaption": ""
             },
@@ -126,6 +184,7 @@
               "ToolTip": "C:\\Users\\dmontg1\\source\\repos\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.ApiService\\Controllers\\HomePageController.cs",
               "RelativeToolTip": "Ups_Downs_API.ApiService\\Controllers\\HomePageController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAKAAAAAAAAAA==",
+<<<<<<< HEAD
 >>>>>>> 63b2145 (New Branch with only the home page functional)
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-29T19:37:59.096Z",
@@ -152,11 +211,16 @@
 >>>>>>> 63b2145 (New Branch with only the home page functional)
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-22T19:00:19.444Z",
+=======
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-04T06:41:06.458Z",
+>>>>>>> HomePageBranch
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+<<<<<<< HEAD
               "Title": "ViewPostController.cs",
               "DocumentMoniker": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.ApiService\\Controllers\\ViewPostController.cs",
               "RelativeDocumentMoniker": "Ups_Downs_API.ApiService\\Controllers\\ViewPostController.cs",
@@ -165,10 +229,21 @@
               "ViewState": "AgIAAEcAAAAAAAAAAAAIwBUAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-22T18:56:07.813Z",
+=======
+              "Title": "HomePageService.cs",
+              "DocumentMoniker": "C:\\Users\\dmontg1\\source\\repos\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.ApiService\\Services\\HomePageService.cs",
+              "RelativeDocumentMoniker": "Ups_Downs_API.ApiService\\Services\\HomePageService.cs",
+              "ToolTip": "C:\\Users\\dmontg1\\source\\repos\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.ApiService\\Services\\HomePageService.cs",
+              "RelativeToolTip": "Ups_Downs_API.ApiService\\Services\\HomePageService.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAYwEwAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-03T22:55:07.985Z",
+>>>>>>> HomePageBranch
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
 <<<<<<< HEAD
               "DocumentIndex": 2,
               "Title": "ViewPost.razor",
@@ -178,6 +253,8 @@
               "RelativeToolTip": "Ups_Downs_API.Web\\Components\\Pages\\ViewPost.razor",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABgAAABhAAAAAAAAAA==",
 =======
+=======
+>>>>>>> HomePageBranch
               "DocumentIndex": 4,
               "Title": "Home.razor",
               "DocumentMoniker": "C:\\Users\\dmontg1\\source\\repos\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Web\\Components\\Pages\\Home.razor",
@@ -185,9 +262,14 @@
               "ToolTip": "C:\\Users\\dmontg1\\source\\repos\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Web\\Components\\Pages\\Home.razor",
               "RelativeToolTip": "Ups_Downs_API.Web\\Components\\Pages\\Home.razor",
               "ViewState": "AgIAABsAAAAAAAAAAAAAAB8AAAAFAAAAAAAAAA==",
+<<<<<<< HEAD
 >>>>>>> 63b2145 (New Branch with only the home page functional)
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-04-22T18:50:40.881Z",
+=======
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-29T21:54:25.245Z",
+>>>>>>> HomePageBranch
               "EditorCaption": ""
             }
           ]
