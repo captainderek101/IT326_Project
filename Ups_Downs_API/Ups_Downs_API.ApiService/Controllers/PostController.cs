@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
 using Library;
+using Ups_Downs_API.ApiService.Services;
 
 namespace Ups_Downs_API.ApiService.Controllers
 {
@@ -8,6 +8,13 @@ namespace Ups_Downs_API.ApiService.Controllers
     [Route("counter")]
     public class CounterController : ControllerBase
     {
+
+        private readonly LoginService _loginService;
+
+        public CounterController(LoginService loginService)
+        {
+            _loginService = loginService;
+        }
         // This will now respond to GET requests from/counter: https://localhost:7466/counter
         [HttpGet]
         public IActionResult Get()
@@ -16,7 +23,7 @@ namespace Ups_Downs_API.ApiService.Controllers
 
             //TODO: validate model state
             
-            return Ok("GET request received from Counter button!!!!!");
+            return Ok(new User("un", "pw", "em"));
         }
 
 

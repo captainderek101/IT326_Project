@@ -1,0 +1,212 @@
+﻿@page "/login"
+@rendermode InteractiveServer
+@inject IJSRuntime JS
+
+@code {
+    [Inject]
+    private HttpClient _httpClient { get; set; }
+
+    public Library.User User = null;
+
+    public string inputValue = "";
+    public string sessionItem = "";
+    public string returninfo = "";
+    public string serverResponse = "";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var UserJson = await JS.InvokeAsync<string>("sessionStorage.getItem", "user");
+
+            if (!string.IsNullOrEmpty(UserJson))
+            {
+                User = System.Text.Json.JsonSerializer.Deserialize<Library.User>(UserJson);
+            }
+            else
+            {
+                User = null;
+            }
+            serverResponse = "";
+            StateHasChanged();
+        }
+    }
+}
+
+<div>
+    @if (User == null) //Display for anonymous users
+    {
+        <button @onclick="() => switchTab(0)">Login</button>
+        <button @onclick="() => switchTab(1)">Create Account</button>
+        @code
+        {
+        public int activeTab = 0;
+
+        private void switchTab(int tab)
+        {
+            activeTab = tab;
+            serverResponse = "";
+        }
+        }
+        @if (activeTab == 0) //Login tab display
+        {
+            <h1>login</h1>
+            <h3>username:</h3>
+            <input type="text" @bind="userName" /><br />
+            <h3>password:</h3>
+            <input type="text" @bind="password" /><br />
+            <button @onclick="login">login</button>
+            <h3>@serverResponse</h3>
+            @code
+            {
+
+        public string userName = "";
+        public string password = "";
+
+        //creates a POST request
+        private async Task login()
+        {
+            //create user object based off user credentials
+            var newLogin = new Library.LoginRequest(userName, password);
+
+            //http Post request
+            var response = await _httpClient.PostAsJsonAsync("https://localhost:7466/login", newLogin);
+            Console.WriteLine("response recieved!");
+            //checks response status
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("response status successful!");
+                var user = await response.Content.ReadFromJsonAsync<Library.User>();
+
+                if (user != null)
+                {
+                    // Login success — store user in sessionStorage
+                    var json = System.Text.Json.JsonSerializer.Serialize(user);
+                    await JS.InvokeVoidAsync("sessionStorage.setItem", "user", json);
+                    Console.WriteLine("Login successful!");
+                    await OnAfterRenderAsync(true);
+                }
+                else
+                {
+                    serverResponse = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine("Login failed: User not found.");
+                }
+            }
+            else
+            {
+                serverResponse = await response.Content.ReadAsStringAsync();
+                Console.WriteLine("Server error. Try again later.");
+            }
+        }
+            }
+        }
+        else if (activeTab == 1) //Create Account tab display
+        {
+            <h1>Create Account</h1>
+            <h3>username:</h3>
+            <input type="text" @bind="userName" @bind:event="oninput"/><br />
+            <h3>password:</h3>
+            <input type="text" @bind="password" @bind:event="oninput" />
+
+            <br />
+            <h3>Verify Password:</h3>
+            <input type="text" @bind="secondPassword" @bind:event="oninput" />
+
+            <br />
+            @if (password != secondPassword)
+            {
+                <h2>Passwords do not match!</h2>
+            }
+            <button @onclick="createAccount">Create</button>
+            <h3>@serverResponse</h3>
+
+            @code
+            {
+                public string secondPassword = "";
+
+                //function to create a HTTP POST request to create an account
+                private async Task createAccount()
+                {
+                    //create user object based off user credentials
+                    var accountCreationRequest = new Library.CreateAccountObject(userName, password);
+
+                    Console.WriteLine("sending Account creation request");
+
+                    var response = await _httpClient.PostAsJsonAsync<Library.CreateAccountObject>("https://localhost:7466/login/create", accountCreationRequest);
+
+                    Console.WriteLine("response recieved!");
+                    serverResponse = await response.Content.ReadAsStringAsync();
+                }
+            }
+
+        }
+        <p>@returninfo</p>
+    }
+    else //User logged in Edit Account tab display
+    {
+        <h1>Edit Account</h1>
+        <h3>username: @User.Username </h3>
+        <input type="text" @bind="newUsername" />
+
+        <br />
+        <h3>password: @User.Password </h3>
+        <input type="text" @bind="newPassword" />
+
+        <br />
+        <h3>Email: @User.Email </h3>
+        <input type="text" @bind="newEmail" @bind:event="oninput" />
+        <button @onclick="updateAccount">Update Account Information</button>
+        <h3>@serverResponse</h3>
+        @code 
+        {
+            public string newUsername = "";
+            public string newPassword = "";
+            public string newEmail = "";
+
+            private async Task updateAccount()
+            {
+                var emailPattern = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$";
+                var regex = new System.Text.RegularExpressions.Regex(emailPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+                if (!string.IsNullOrWhiteSpace(newEmail) && !regex.IsMatch(newEmail))
+                {
+                    serverResponse = "Invalid email format.";
+                    return;
+                }
+
+                if (!string.IsNullOrWhiteSpace(newUsername) && User.Username != newUsername)
+                {
+                    Console.WriteLine($"Attempting username change from {User.Username} to {newUsername}");
+                    User.Username = newUsername;
+                }
+                if (!string.IsNullOrWhiteSpace(newPassword) && User.Password != newPassword)
+                {
+                    Console.WriteLine($"Attempting password change from {User.Password} to {newPassword}");
+                    User.Password = newPassword;
+                }
+
+                if (!string.IsNullOrWhiteSpace(newEmail)  && User.Email != newEmail)
+                {
+                    Console.WriteLine($"Attempting email change from {User.Email} to {newEmail}");
+                    User.Email = newEmail;
+                }
+
+                var response = await _httpClient.PostAsJsonAsync<Library.User>("https://localhost:7466/login/update", User);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    //store new user credentials in the system
+                    var json = System.Text.Json.JsonSerializer.Serialize(User);
+                    await JS.InvokeVoidAsync("sessionStorage.setItem", "user", json);
+
+                    await OnAfterRenderAsync(true);
+                }
+                else
+                {
+                    serverResponse = await response.Content.ReadAsStringAsync();
+                }
+                
+            }
+        }
+    }
+</div>

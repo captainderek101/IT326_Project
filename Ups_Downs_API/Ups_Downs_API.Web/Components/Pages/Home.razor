@@ -1,5 +1,6 @@
 ﻿@page "/"
 @rendermode InteractiveServer
+@inject IJSRuntime JS
 
 <PageTitle>Home</PageTitle>
 
@@ -29,5 +30,20 @@
 
         events = await _httpClient.GetFromJsonAsync<Library.CurrentEvents>("https://localhost:7466/Home");
         
+    }
+}
+
+<button class="btn btn-primary" @onclick="GetItemAsync">Retrieve Item from Session Storage</button>
+
+<p>Response: @sessionItem</p>
+@code {
+    private string sessionItem = "";
+
+    private readonly IJSRuntime _jsRuntime;
+
+
+    public async Task GetItemAsync()
+    {
+        sessionItem = await JS.InvokeAsync<string>("sessionStorage.getItem", "Login");
     }
 }
