@@ -1,10 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-<<<<<<< HEAD
-=======
+
 using Ups_Downs_API.ApiService.Database;
->>>>>>> HomePageBranch
+
 using Ups_Downs_API.ApiService.Services;
-using Ups_Downs_API.ApiService.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,16 +19,12 @@ builder.Services.AddControllers();
 
 // Sample service file below - registering for dependency injection
 builder.Services.AddScoped<SkeletonService>();
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+
 builder.Services.AddScoped<ViewPostService>();
 builder.Services.AddScoped<CreatingPostService>();
-=======
+
 builder.Services.AddScoped<HomePageService>();
->>>>>>> 63b2145 (New Branch with only the home page functional)
-=======
-builder.Services.AddScoped<HomePageService>();
->>>>>>> HomePageBranch
 
 var connectionString =
     builder.Configuration.GetConnectionString("DefaultConnection")
