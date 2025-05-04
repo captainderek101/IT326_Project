@@ -1,22 +1,60 @@
 ﻿using Library;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Ups_Downs_API.ApiService.Database;
 
 namespace Ups_Downs_API.ApiService.Services
 {
     public class CreatingPostService
     {
+        private readonly IDbContextFactory<ApplicationDbContext> _contextFactory;
+
+        // Constructor Injection
+        public CreatingPostService(IDbContextFactory<ApplicationDbContext> contextFactory)
+        {
+            _contextFactory = contextFactory;
+        }
         public CreatingPostObject ProcessCreatingPost(CreatingPostObject obj)
         {
-            obj.PostId = 123;
-            obj.PostDayType = "good";
-            obj.PostTimestamp = "01/01/0000 21:20:30";
-            obj.UserId = 321;
-            obj.Content = "I just can't believe that 'it's not butter' is actually not butter, I thought it was actually butter " +
-                "but its some butter alternative?! Who let this happen? I understand it isn't actually butter but it should " +
-                "actually be butter and now I don't know what's real. Is it butter or is it not butter? Is it some butter and not butter " +
-                "what has this world come to";
-        
-            // TODO: adjust PostTimestamp to only send the time, not the entire date
-            // TODO: DB connection here - after adjsuting the post time stamp, send to DB.
+            Console.Write("Here is the post time stamp: ");
+            Console.WriteLine(obj.PostTimestamp);
+            
+            using (var context = _contextFactory.CreateDbContext())
+            {
+
+                // Format sentiment score to filterable words: happy, neutral, upset
+                double score = Math.Round(obj.SentimentScore, 3);
+                if (score > 0.25)
+                {
+                    obj.SentimentWord = "Happy";
+                }
+
+                else if (score <= 0.25 && score >= -0.25)
+                {
+                    obj.SentimentWord = "Neutral";
+                }
+
+                else
+                {
+                    obj.SentimentWord = "Upset";
+                }
+
+                var connection = (SqlConnection)context.Database.GetDbConnection();
+                connection.Open();
+
+                var command = new SqlCommand("INSERT INTO Posts (userID, lastUpdated, dayType, sentiment, message) VALUES (@userID, @lastUpdated, @dayType, @sentiment, @message)", connection);
+
+                command.Parameters.AddWithValue("@userID", obj.UserId);
+                command.Parameters.AddWithValue("@lastUpdated", obj.PostTimestamp);
+                command.Parameters.AddWithValue("@dayType", obj.PostDayType);
+                command.Parameters.AddWithValue("@sentiment", obj.SentimentWord);
+                command.Parameters.AddWithValue("@message", obj.Content);
+
+                int rowsAffected = command.ExecuteNonQuery();
+                Console.WriteLine("Post created");
+
+            }
+
             return obj;
         }
     }
