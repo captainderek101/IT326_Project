@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using Ups_Downs_API.ApiService.Services;
+using Ups_Downs_API.ApiService.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,8 +16,15 @@ builder.Services.AddProblemDetails();
 builder.Services.AddControllers();
 
 // Sample service file below - registering for dependency injection
-builder.Services.AddScoped<SkeletonService>();
+//builder.Services.AddScoped<SkeletonService>();
 builder.Services.AddScoped<CreatingPostService>();
+
+var connectionString =
+    builder.Configuration.GetConnectionString("DefaultConnection")
+        ?? throw new InvalidOperationException("Connection string"
+        + "'DefaultConnection' not found.");
+builder.Services.AddDbContextFactory<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
 
 var app = builder.Build();
 

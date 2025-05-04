@@ -1,11 +1,36 @@
 ﻿@page "/createPost"
 @rendermode InteractiveServer
 @inject HttpClient Http
+@inject IJSRuntime JS
 @using Google.Cloud.Language.V1
 @using Library
 @using System.Globalization          // timestamp format
 @using System.Net.Http.Json          // PostAsJsonAsync
 @using System.Text.Json 
+
+@code {
+    public Library.User User = null;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var UserJson = await JS.InvokeAsync<string>("sessionStorage.getItem", "user");
+
+            if (!string.IsNullOrEmpty(UserJson))
+            {
+                User = System.Text.Json.JsonSerializer.Deserialize<Library.User>(UserJson);
+                Console.WriteLine("Found user");
+            }
+            else
+            {
+                User = new Library.User("1", "anonymous", "test");
+                Console.WriteLine("No user found, logged in as anonymous");
+            }
+            StateHasChanged();
+        }
+    }
+}
 
 <PageTitle>Create a Post</PageTitle>
 
@@ -86,8 +111,8 @@
         var post = new CreatingPostObject(
             postId: 0,
             postDayType: _postDayType,
-            postTimestamp: "test",
-            userID: 0,
+            postTimestamp: @DateTime.Now.ToString("HH:mm"),
+            userID: User.UserID,
             content: _content,
             sentimentScore: score);
 
