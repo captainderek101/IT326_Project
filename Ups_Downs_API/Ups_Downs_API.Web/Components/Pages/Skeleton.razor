@@ -9,23 +9,23 @@
     private async Task CallRequest()
     {
         //create an object
-        var myObject = new Library.SkeletonObject("test", "test");
+        //var myObject = new Library.SkeletonObject();
 
         // Make a GET request to the API and store the response
-        myObject = await _httpClient.GetFromJsonAsync<Library.SkeletonObject>("https://localhost:7466/skeleton");
+        //myObject = await _httpClient.GetFromJsonAsync<Library.SkeletonObject>("https://localhost:7466/skeleton");
     }
 
     private async Task CallPost()
     {
         //create an object
-        var myObject = new Library.SkeletonObject("test", "test");
+        //var myObject = new Library.SkeletonObject();
 
         //add logic to populate the object
 
 
         // Send the POST request with the object
         //PostAsJsonAsync will serialize the object to JSON for you
-        var response = await _httpClient.PostAsJsonAsync("https://localhost:7466/skeleton", myObject);
-        await response.Content.ReadAsStringAsync();
+        //var response = await _httpClient.PostAsJsonAsync("https://localhost:7466/skeleton", myObject);
+        //await response.Content.ReadAsStringAsync();
     }
 }

@@ -1,11 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using Ups_Downs_API.ApiService.Services;
 using Library;
 using Microsoft.AspNetCore.Identity;
 using Ups_Downs_API.ApiService.Database;
+using Ups_Downs_API.ApiService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 Console.WriteLine("Hello from ups and downs api service");
 
@@ -23,6 +22,7 @@ builder.Services.AddScoped<SkeletonService>();
 builder.Services.AddScoped<ViewPostService>();
 builder.Services.AddScoped<CreatingPostService>();
 builder.Services.AddScoped<LoginService>();
+builder.Services.AddScoped<HomePageService>();
 
 var connectionString =
     builder.Configuration.GetConnectionString("DefaultConnection")

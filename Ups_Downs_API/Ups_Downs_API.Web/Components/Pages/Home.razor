@@ -4,9 +4,35 @@
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Welcome to Ups & Downs!</h1>
+<button class="btn btn-primary" @onclick="getCurrentEvents">Display current events</button>
 
-Welcome to your new app.
+<p>@events.positiveMessage</p>
+
+@if (events.articles.Count() > 2){
+    <p>@events.articles[0].DisplayArticle()</p>
+
+    <p>@events.articles[1].DisplayArticle()</p>
+
+    <p>@events.articles[2].DisplayArticle()</p>
+}
+
+@code {
+
+    Library.CurrentEvents events = new Library.CurrentEvents();
+
+    [Inject]
+    private HttpClient _httpClient { get; set; }
+
+    private async Task getCurrentEvents()
+    {
+        //Get current events object to place them inside respective values
+
+        events = await _httpClient.GetFromJsonAsync<Library.CurrentEvents>("https://localhost:7466/Home");
+        
+    }
+}
+
 <button class="btn btn-primary" @onclick="GetItemAsync">Retrieve Item from Session Storage</button>
 
 <p>Response: @sessionItem</p>
