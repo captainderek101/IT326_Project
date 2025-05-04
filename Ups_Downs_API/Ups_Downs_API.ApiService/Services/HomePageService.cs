@@ -14,99 +14,179 @@ namespace Ups_Downs_API.ApiService.Services
 {
     public class HomePageService
     {
-        // TODO: for database integration later
-        //private readonly IDbContextFactory<ApplicationDbContext> _contextFactory;
-        //private CurrentEvents _currentEvents;
+        private readonly IDbContextFactory<ApplicationDbContext> _contextFactory;
+
 
         // Constructor Injection
-       // public HomePageService(IDbContextFactory<ApplicationDbContext> contextFactory)
-        //{
-        //    _contextFactory = contextFactory;
-        //}
+        public HomePageService(IDbContextFactory<ApplicationDbContext> contextFactory)
+        {
+            _contextFactory = contextFactory;
+        }
 
         public CurrentEvents getCurrentEvents()
         {
             CurrentEvents currentEvents = new CurrentEvents();
-            // For use integrating database connection later
+            
+            //bool isOutdated = true; // Check if db info outdated
 
-            // TODO: add database connectivity
+            // Db connection
             //using (var context = _contextFactory.CreateDbContext())
             //{
-            //    var connection = (SqlConnection)context.Database.GetDbConnection();
-            //    string query = "SELECT title, url FROM Articles";
-            //    var command = new SqlCommand(query, connection);
+                //var connection = (SqlConnection)context.Database.GetDbConnection();
+                //string query = "SELECT TOP 1 time FROM Articles";
+                //var command = new SqlCommand(query, connection);
 
-            //    connection.Open();
-            //    var reader = command.ExecuteReader();
+                //connection.Open();
+                //using (var reader = command.ExecuteReader())
+                //{
+                    // 3 cases - db is empty, db is outdated, or db is up to date
+                    // Checking timestamp/if database is outdated
+                  //  while (reader.Read())
+                    //{
+                        // If the date lines up, then they aren't outdated
+                      //  if ((reader.GetString(0) == DateTime.Today.ToString("YYYY-MM-dd")))
+                        //{
+                           // isOutdated = false;
+                        //}
+                    //}
+                //}
+                //if (!isOutdated)
+                //{
+                    // If not outdated, then read articles into current events
+                  //  query = "SELECT title, url FROM Articles";
+                    //command = new SqlCommand(query, connection);
 
-            //    while (reader.Read())
-            //   {
-            //          TODO: fix logic
-            //        currentEvents.articles[0].title = (reader.GetString(0));
-            //    }
-            //    reader.Close();
-            //}
+                    //using (var reader = command.ExecuteReader()) { 
+                    // reading articles into db
+                    //while (reader.Read())
+                    //{
+                    //    currentEvents.articles.Add(new NewsArticle(reader.GetString(0), reader.GetString(1)));
+                    //}
+                //}
 
-            // If read database and results are outdated, then generate new articles
-            // OR somethign IDK
-            bool isOutdated = true;
-            if (isOutdated)
-            {
-                // Insert world news api key here!
-                string apiKey = "";
-                // Copied shamelessly from the exapmle given
-                Configuration config = new Configuration();
-                config.BasePath = "https://api.worldnewsapi.com";
-                // Configure API key authorization: apiKey
-                config.AddApiKey("api-key", apiKey);
-                // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-                // config.AddApiKeyPrefix("api-key", "Bearer");
-                // Configure API key authorization: headerApiKey
-                config.AddApiKey("x-api-key", apiKey);
-                // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-                // config.AddApiKeyPrefix("x-api-key", "Bearer");
+                    // If articles outdated, read new articles
+                //}
+                //else
+                //{
+                    // Insert world news api key here!
+                    string apiKey = "";
+                    // Copied shamelessly from the exapmle given
+                    Configuration config = new Configuration();
+                    config.BasePath = "https://api.worldnewsapi.com";
+                    // Configure API key authorization: apiKey
+                    config.AddApiKey("api-key", apiKey);
+                    // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+                    // config.AddApiKeyPrefix("api-key", "Bearer");
+                    // Configure API key authorization: headerApiKey
+                    config.AddApiKey("x-api-key", apiKey);
+                    // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+                    // config.AddApiKeyPrefix("x-api-key", "Bearer");
 
-                var apiInstance = new NewsApi(config);
-                string? text = null;  
-                string? textMatchIndexes = null; 
-                string sourceCountry = "us";  
-                string language = "en";  
-                double minSentiment = 0.8;  
-                double maxSentiment = 1;  
-                string earliestPublishDate = DateTime.Today.AddDays(-7).ToString("yyyy-MM-dd");  // TODO: Hopefully this works :)
-                string? latestPublishDate = null;  
-                string? newsSources = null;  
-                string? authors = null;  
-                string? categories = null; 
-                string? entities = null;  
-                string? locationFilter = null;  
-                string? sort = null;  
-                string? sortDirection = null;  
-                int? offset = 0;  
-                int? number = 3; 
+                    var apiInstance = new NewsApi(config);
+                    string? text = null;
+                    string? textMatchIndexes = null;
+                    string sourceCountry = "us";
+                    string language = "en";
+                    double minSentiment = 0.7;
+                    double maxSentiment = 1;
+                    string earliestPublishDate = DateTime.Today.AddDays(-7).ToString("yyyy-MM-dd"); 
+                    string? latestPublishDate = null;
+                    string? newsSources = null;
+                    string? authors = null;
+                    string? categories = null;
+                    string? entities = null;
+                    string? locationFilter = null;
+                    string? sort = null;
+                    string? sortDirection = null;
+                    int? offset = 0;
+                    int? number = 3;
 
-                try
-                {
-                    // Search News
-                    SearchNews200Response result = apiInstance.SearchNews(text, textMatchIndexes, sourceCountry, language, minSentiment, maxSentiment, earliestPublishDate, latestPublishDate, newsSources, authors, categories, entities, locationFilter, sort, sortDirection, offset, number);
-                    // Put News Results into current events
-                    for (int i = 0; i < 3; i++)
+                    try
                     {
-                        currentEvents.articles.Add(new NewsArticle(result.News[i].Title, result.News[i].Url));
-                    }
-                    // TODO: Will need to also add them to database
+                        // Search News
+                        SearchNews200Response result = apiInstance.SearchNews(text, textMatchIndexes, sourceCountry, language, minSentiment, maxSentiment, earliestPublishDate, latestPublishDate, newsSources, authors, categories, entities, locationFilter, sort, sortDirection, offset, number);
+                // Put News Results into current events
+                currentEvents.positiveMessage = "kill yourself";
+                        for (int i = 0; i < 3; i++)
+                        {
+                            
+                            currentEvents.articles.Add(new NewsArticle(result.News[i].Title, result.News[i].Url));
+                    Console.WriteLine(currentEvents.articles[i].DisplayArticle());
+                            //query = "INSERT INTO Articles VALUES(" + result.News[i].Title + ", " + result.News[i].Url + ", " + DateTime.Today.ToString("yyyy-MM-dd") + ")";
+                            //command = new SqlCommand(query, connection);
 
-                }
-                catch (ApiException e)
-                {
-                    Debug.Print("Exception when calling NewsApi.SearchNews: " + e.Message);
-                    Debug.Print("Status Code: " + e.ErrorCode);
-                    Debug.Print(e.StackTrace);
-                }
-            }
-            // TODO: Insert Positive message
-            currentEvents.positiveMessage = "Consider voluntary euthanasia";
-            return currentEvents;
+                            //using var reader = command.ExecuteReader();
+                        }
+                        return currentEvents;
+                    }
+                    catch (ApiException e)
+                    {
+                        Debug.Print("Exception when calling NewsApi.SearchNews: " + e.Message);
+                        Debug.Print("Status Code: " + e.ErrorCode);
+                        Debug.Print(e.StackTrace);
+                    }
+                //}
+                // Get Positive message from quote table
+                // determine if quote chosen for day, if not choose quote
+                //isOutdated = true;
+                //query = "SELECT time FROM CurQuote";
+                //command = new SqlCommand(query, connection);
+
+                //using (var reader = command.ExecuteReader())
+                //{
+                    // Checking if date chosen is up to date
+                  //  if (reader.Read())
+                    //{
+                      //  if ((reader.GetString(0) == DateTime.Today.ToString("YYYY-MM-DD")))
+                        //{
+                        //    isOutdated = false;
+                    //    }
+                    //}
+               // }
+               // if (!isOutdated)
+               // {
+                    // Finding quote from CurQuote Table
+                 //   query = "SELECT index FROM CurQuote";
+                  //  command = new SqlCommand(query, connection);
+                   // string index;
+                   // using (var reader = command.ExecuteReader()){
+
+                     //   index = reader.GetString(0);
+                    //}
+                   // query = "SELECT text FROM Quotes WHERE id = " + index;
+                   // command = new SqlCommand(query, connection);
+
+                   // using (var reader = command.ExecuteReader()){
+
+                   //     currentEvents.positiveMessage = reader.GetString(0);
+                   // }
+                //}
+                //else
+                //{
+                    // Select new quote
+                  //  query = "DELETE FROM CurQuote";
+                  //  command = new SqlCommand(query, connection);
+
+                  //  command.ExecuteNonQuery();
+
+                    // find random entry in SQL
+                    //query = "SELECT TOP 1 id, text FROM Quotes ORDER BY NEWID()";
+                    //command = new SqlCommand(query, connection);
+                    //int index;
+                    //using (var reader = command.ExecuteReader())
+                    //{
+                    //    index = reader.GetInt16(0);
+                    //    currentEvents.positiveMessage = reader.GetString(0);
+                    //}
+                    // Save result to table
+                   // query = "INSERT INTO CurQuote VALUES(" + index + ", " + DateTime.Today.ToString("yyyy-MM-dd") + ")";
+                   // command = new SqlCommand(query, connection);
+
+                   // command.ExecuteNonQuery();
+                   // connection.Close();
+                //}
+                return currentEvents;
+            //}
         }
     }
 }

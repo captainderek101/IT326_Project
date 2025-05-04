@@ -26,13 +26,8 @@
     private async Task getCurrentEvents()
     {
         //Get current events object to place them inside respective values
-        // TODO: USED FOR TESTING, remove later
-        //events.positiveMessage = "die";
-        //for (int i = 0; i < 3; i++)
-        //{
-        //    events.articles.Add(new Library.NewsArticle("number: " + (i + i), "URL"));
-        //}
 
         events = await _httpClient.GetFromJsonAsync<Library.CurrentEvents>("https://localhost:7466/Home");
+        
     }
 }

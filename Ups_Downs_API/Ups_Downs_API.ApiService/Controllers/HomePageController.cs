@@ -1,16 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Library;
 using Ups_Downs_API.ApiService.Services;
-using System.Globalization;
 
 namespace Ups_Downs_API.ApiService.Controllers
 {
     [ApiController]
-    [Route("")]
+    [Route("Home")]
     public class HomePageController : ControllerBase
     {
         private readonly HomePageService _HomePageService;
-        private CurrentEvents _CurrentEvents;
 
         public HomePageController(HomePageService homePageService)
         {
