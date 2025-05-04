@@ -16,11 +16,9 @@ namespace Ups_Downs_API.ApiService.Services
         }
         public CreatingPostObject ProcessCreatingPost(CreatingPostObject obj)
         {
-            // TODO: adjust PostTimestamp to only send the time, not the entire date
             Console.Write("Here is the post time stamp: ");
             Console.WriteLine(obj.PostTimestamp);
-            // TODO: DB connection here - after adjsuting the post time stamp, send to DB.
-
+            
             using (var context = _contextFactory.CreateDbContext())
             {
 
@@ -56,9 +54,6 @@ namespace Ups_Downs_API.ApiService.Services
                 Console.WriteLine("Post created");
 
             }
-
-
-
 
             return obj;
         }

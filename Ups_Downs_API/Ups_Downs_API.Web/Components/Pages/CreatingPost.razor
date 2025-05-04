@@ -4,8 +4,8 @@
 @inject IJSRuntime JS
 @using Google.Cloud.Language.V1
 @using Library
-@using System.Globalization          // timestamp format
-@using System.Net.Http.Json          // PostAsJsonAsync
+@using System.Globalization
+@using System.Net.Http.Json
 @using System.Text.Json 
 
 @code {
@@ -54,43 +54,39 @@
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
+<br />
+<p>@_status</p>
+
 <!-- capture what is being sent to the API -->
-<div class="mt-3">
-    <label class="form-label">Payload preview</label>
-    <textarea class="form-control small" rows="6" readonly>
-        @_payloadJson
-    </textarea>
+<div class="mt-3"> 
+    <br />
+    <br />
+    <label class="form-label">Payload preview</label> 
+     <textarea class="form-control small" rows="8" readonly> 
+         @_payloadJson 
+     </textarea> 
+ </div> 
 
-    <label class="form-label">Sentiment Analysis</label>
-    <textarea class="form-control small" rows="6" readonly>
-        @_sentimentAnalysis
-    </textarea>
-</div>
-
-<!-- small “text‑box thing” showing what will be sent -->
-@if (!string.IsNullOrWhiteSpace(_responseJson))
-{
-    <div class="mt-3">
-        <label class="form-label">API response body</label>
-        <textarea class="form-control small" rows="6" readonly>
-            @_responseJson
-        </textarea>
-    </div>
-}
-
-
-<p>Status: @_status</p>
+ <!-- Show what the API responds with --> 
+ @if (!string.IsNullOrWhiteSpace(_responseJson) && (!string.IsNullOrWhiteSpace(_content) && !string.IsNullOrWhiteSpace(_postDayType)))
+ { 
+    <div class="mt-3"> 
+        <label class="form-label">API response body</label> 
+        <textarea class="form-control small" rows="8" readonly> 
+            @_responseJson 
+        </textarea> 
+    </div> 
+ } 
 
 @code {
-
     private string _postDayType = "";
     private string _content = "";
 
-    private string _status = "Not submitted"; //temp - this shows the response. Either "Post Submitted" or a request info if BadRequest
-    private string _responseJson = ""; //captures the response from the API
+    private string _status = ""; // Shows the response of submission (sucess or possible errors)
+    private string _responseJson = ""; // captures the response from the API
     private string _sentimentAnalysis = ""; // new field to hold sentiment results
 
-    //capture what is being sent to the API
+    // capture what is being sent to the API
     private string _payloadJson =>
         JsonSerializer.Serialize(
             new CreatingPostObject(
@@ -106,7 +102,7 @@
     private async Task CreatePost()
     {
         _sentimentAnalysis = ""; // clear previous sentiment
-        var score = await PerformSentimentAnalysis("AIzaSyAgTOyzM94Hc3gpT4s0rbmCVF2J30FJicU");
+        var score = await PerformSentimentAnalysis("");
 
         var post = new CreatingPostObject(
             postId: 0,
@@ -120,6 +116,22 @@
 
         // read the response body as text
         var raw = await resp.Content.ReadAsStringAsync();
+        
+        // respond with the success or potential errors
+        if (resp.IsSuccessStatusCode)
+        {
+            _status = "Post submitted!";
+        }
+
+        if (_content == "")
+        {
+            _status = "Please describe your day!";
+        }
+
+        if (_postDayType == "")
+        {
+            _status = "Please select a type of day!";
+        }
 
         // prints if the body is JSON - used to see what API responds with
         try
@@ -132,10 +144,9 @@
         {
             _responseJson = raw; // not JSON or bad format – keep raw
         }
-        // status - either success or fail
-        _status = resp.IsSuccessStatusCode ? "Post submitted" : $"Failed: {resp.StatusCode}";
     }
 
+    // take in the user's entered content, send it to google's natural cloud API for analysis, return with the score
     private async Task<double> PerformSentimentAnalysis(string apiKey)
     {
         var client = new LanguageServiceClientBuilder { ApiKey = apiKey }.Build();

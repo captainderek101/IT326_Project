@@ -12,6 +12,7 @@ namespace Ups_Downs_API.ApiService.Controllers
 
         private readonly CreatingPostService _creatingPostService;
 
+        // Constructor Injection
         public CreatingPostController(CreatingPostService creatingPostService)
         {
             _creatingPostService = creatingPostService;
@@ -20,6 +21,7 @@ namespace Ups_Downs_API.ApiService.Controllers
         [HttpPost("Creation")]
         public IActionResult SomePost([FromBody] CreatingPostObject receivedObject)
         {
+            //validating the model, if model is not valid send a BadRequest
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
