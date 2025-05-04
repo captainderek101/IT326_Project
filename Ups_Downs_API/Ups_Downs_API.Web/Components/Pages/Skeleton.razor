@@ -1,26 +1,26 @@
-﻿@* @page "/skeleton" *@
-@* <h3>Skeleton</h3> *@
+﻿@page "/skeleton"
+<h3>Skeleton</h3>
 
-@* @code { *@
-@*     [Inject] *@
-@*     private HttpClient _httpClient { get; set; } *@
+@code {
+    [Inject]
+    private HttpClient _httpClient { get; set; }
 
-@*     //using async Task allows the function to use the awat keyword so that it can wait for the response *@
-@*     private async Task CallRequest() *@
-@*     { *@
-@*         //create an object *@
-@*         var myObject = new Library.SkeletonObject(); *@
+    //using async Task allows the function to use the awat keyword so that it can wait for the response
+    private async Task CallRequest()
+    {
+        //create an object
+        var myObject = new Library.SkeletonObject("test", "test");
 
-@*         // Make a GET request to the API and store the response *@
-@*         myObject = await _httpClient.GetFromJsonAsync<Library.SkeletonObject>("https://localhost:7466/skeleton"); *@
-@*     } *@
+        // Make a GET request to the API and store the response
+        myObject = await _httpClient.GetFromJsonAsync<Library.SkeletonObject>("https://localhost:7466/skeleton");
+    }
 
-@*     private async Task CallPost() *@
-@*     { *@
-@*         //create an object *@
-@*         var myObject = new Library.SkeletonObject(); *@
+    private async Task CallPost()
+    {
+        //create an object
+        var myObject = new Library.SkeletonObject("test", "test");
 
-@*         //add logic to populate the object *@
+        //add logic to populate the object
 
 
 @*         // Send the POST request with the object *@

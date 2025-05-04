@@ -16,6 +16,11 @@
     <ProjectReference Include="..\Ups_Downs_API.ServiceDefaults\Ups_Downs_API.ServiceDefaults.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.4" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<ProjectReference Include="..\Library\Library.csproj" />
 	</ItemGroup>
