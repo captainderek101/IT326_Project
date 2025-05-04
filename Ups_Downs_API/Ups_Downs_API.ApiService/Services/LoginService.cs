@@ -97,13 +97,6 @@ namespace Ups_Downs_API.ApiService.Services
             }
         }
 
-        public bool ProcessForgotPwPost(ForgotPasswordObject obj)
-        {
-            // TODO: DB connection here
-
-            return true;//password was changed
-        }
-
         public User ProcessUpdateAccountPost(User obj)
         {
             //DB connection here
@@ -142,13 +135,6 @@ namespace Ups_Downs_API.ApiService.Services
             }
 
             return null; //account was not updated
-        }
-
-        public bool ProcessEmailValidationPost(User obj)
-        {
-            // TODO: DB connection here
-
-            return true; //email was verified
         }
     }
 }
