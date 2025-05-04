@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using Ups_Downs_API.ApiService.Services;
+
 using Ups_Downs_API.ApiService.Database;
+
+using Ups_Downs_API.ApiService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,8 +19,12 @@ builder.Services.AddControllers();
 
 // Sample service file below - registering for dependency injection
 builder.Services.AddScoped<SkeletonService>();
+
+
 builder.Services.AddScoped<ViewPostService>();
 builder.Services.AddScoped<CreatingPostService>();
+
+builder.Services.AddScoped<HomePageService>();
 
 var connectionString =
     builder.Configuration.GetConnectionString("DefaultConnection")
