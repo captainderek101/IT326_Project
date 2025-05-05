@@ -23,13 +23,30 @@ namespace Ups_Downs_API.ApiService.Services
             using (var context = _contextFactory.CreateDbContext())
             {
                 var connection = (SqlConnection)context.Database.GetDbConnection();
-                var command = new SqlCommand($"SELECT message FROM Posts WHERE postID = @postID;", connection);
+                var command = new SqlCommand($"SELECT userID, postID, message, dayType, sentiment, lastUpdated FROM Posts WHERE postID = @postID;", connection);
                 command.Parameters.AddWithValue("@postID", postID);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    obj.Content = reader.GetString(0);
+                    obj.UserID = reader.GetInt32(0);
+                    obj.PostID = reader.GetInt32(1);
+                    if(!reader.IsDBNull(2))
+                    {
+                        obj.Content = reader.GetString(2);
+                    }
+                    if (!reader.IsDBNull(3))
+                    {
+                        obj.DayType = reader.GetString(3);
+                    }
+                    if (!reader.IsDBNull(4))
+                    {
+                        obj.Sentiment = reader.GetString(4);
+                    }
+                    if (!reader.IsDBNull(5))
+                    {
+                        obj.LastUpdated = reader.GetSqlDateTime(5);
+                    }
                 }
                 reader.Close();
             }

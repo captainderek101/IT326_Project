@@ -1,4 +1,4 @@
-﻿@page "/Browse Posts"
+﻿@page "/browse"
 @rendermode InteractiveServer
 
 <PageTitle>Browse Posts</PageTitle>
@@ -22,7 +22,7 @@
 
     private async Task RetrievePosts()
     {
-        returnInfo = await _httpClient.GetFromJsonAsync<List<Library.PostObject>>("https://localhost:7466/BrowsePosts");
+        returnInfo = await _httpClient.GetFromJsonAsync<List<Library.PostObject>>("https://localhost:7466/browse");
 
     }
 }

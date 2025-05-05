@@ -5,6 +5,6 @@ namespace Library
 {
     public interface Filter
     {
-        public List<Post> applyFilter();
+        public string applyFilter();
     }
 }

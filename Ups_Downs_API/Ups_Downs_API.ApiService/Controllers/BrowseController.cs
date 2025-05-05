@@ -16,7 +16,7 @@ namespace Ups_Downs_API.ApiService.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<PostObject>> recieveBrowseRequest([FromQuery(Name = "filterType")] string filterType, [FromQuery(Name = "filterValue")] string filterValue)
+        public ActionResult<List<PostObject>> requestPosts([FromQuery(Name = "filterType")] string filterType, [FromQuery(Name = "filterValue")] string filterValue)
         {
             //validating the model, if model is invalid send a BadRequest
             if (!ModelState.IsValid)
