@@ -144,6 +144,7 @@
     }
     else //User logged in Edit Account tab display
     {
+        <button @onclick="AccountLogout">Logout</button>
         <h1>Edit Account</h1>
         <h3>username: @User.Username </h3>
         <input type="text" @bind="newUsername" />
@@ -207,6 +208,14 @@
                 }
                 
             }
+
+        private async Task AccountLogout()
+        {
+            //remove user from session storage
+            await JS.InvokeVoidAsync("sessionStorage.removeItem", "user");
+            User = null;
+            await OnAfterRenderAsync(true);
+        }
         }
     }
 </div>
