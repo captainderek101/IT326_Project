@@ -2,6 +2,7 @@
 @rendermode InteractiveServer
 @inject HttpClient Http
 @inject IJSRuntime JS
+@inject IConfiguration Configuration
 @using Google.Cloud.Language.V1
 @using Library
 @using System.Globalization
@@ -102,7 +103,8 @@
     private async Task CreatePost()
     {
         _sentimentAnalysis = ""; // clear previous sentiment
-        var score = await PerformSentimentAnalysis("");
+        var apiKey = Configuration["GoogleCloud:ApiKey"];
+        var score = await PerformSentimentAnalysis(apiKey);
 
         var post = new CreatingPostObject(
             postId: 0,
