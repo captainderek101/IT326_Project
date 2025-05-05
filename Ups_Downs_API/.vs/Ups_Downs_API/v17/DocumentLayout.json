@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{CA8BE9E0-20AF-4F5B-AE47-B1BE55D3FE2A}|Ups_Downs_API.Tests\\Ups_Downs_API.Tests.csproj|c:\\users\\super\\it326_project\\ups_downs_api\\ups_downs_api.tests\\ups_downs_api.tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{CA8BE9E0-20AF-4F5B-AE47-B1BE55D3FE2A}|Ups_Downs_API.Tests\\Ups_Downs_API.Tests.csproj|solutionrelative:ups_downs_api.tests\\ups_downs_api.tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA8BE9E0-20AF-4F5B-AE47-B1BE55D3FE2A}|Ups_Downs_API.Tests\\Ups_Downs_API.Tests.csproj|c:\\users\\super\\it326_project\\ups_downs_api\\ups_downs_api.tests\\ups_downs_api.tests.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{CA8BE9E0-20AF-4F5B-AE47-B1BE55D3FE2A}|Ups_Downs_API.Tests\\Ups_Downs_API.Tests.csproj|solutionrelative:ups_downs_api.tests\\ups_downs_api.tests.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CA8BE9E0-20AF-4F5B-AE47-B1BE55D3FE2A}|Ups_Downs_API.Tests\\Ups_Downs_API.Tests.csproj|c:\\users\\super\\it326_project\\ups_downs_api\\ups_downs_api.tests\\browsepoststests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA8BE9E0-20AF-4F5B-AE47-B1BE55D3FE2A}|Ups_Downs_API.Tests\\Ups_Downs_API.Tests.csproj|solutionrelative:ups_downs_api.tests\\browsepoststests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|c:\\users\\super\\it326_project\\ups_downs_api\\ups_downs_api.apiservice\\services\\browseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|solutionrelative:ups_downs_api.apiservice\\services\\browseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA8BE9E0-20AF-4F5B-AE47-B1BE55D3FE2A}|Ups_Downs_API.Tests\\Ups_Downs_API.Tests.csproj|c:\\users\\super\\it326_project\\ups_downs_api\\ups_downs_api.tests\\createposttests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,44 +27,12 @@
       "RelativeMoniker": "D:0:0:{CA8BE9E0-20AF-4F5B-AE47-B1BE55D3FE2A}|Ups_Downs_API.Tests\\Ups_Downs_API.Tests.csproj|solutionrelative:ups_downs_api.tests\\logintests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{CA8BE9E0-20AF-4F5B-AE47-B1BE55D3FE2A}|Ups_Downs_API.Tests\\Ups_Downs_API.Tests.csproj|c:\\users\\super\\it326_project\\ups_downs_api\\ups_downs_api.tests\\webtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA8BE9E0-20AF-4F5B-AE47-B1BE55D3FE2A}|Ups_Downs_API.Tests\\Ups_Downs_API.Tests.csproj|solutionrelative:ups_downs_api.tests\\webtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|c:\\users\\super\\it326_project\\ups_downs_api\\ups_downs_api.apiservice\\controllers\\browsecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|solutionrelative:ups_downs_api.apiservice\\controllers\\browsecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|c:\\users\\super\\it326_project\\ups_downs_api\\ups_downs_api.apiservice\\services\\browseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|solutionrelative:ups_downs_api.apiservice\\services\\browseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|c:\\users\\super\\it326_project\\ups_downs_api\\ups_downs_api.apiservice\\services\\viewpostservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|solutionrelative:ups_downs_api.apiservice\\services\\viewpostservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|c:\\users\\super\\it326_project\\ups_downs_api\\ups_downs_api.apiservice\\services\\homepageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|solutionrelative:ups_downs_api.apiservice\\services\\homepageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{13AC501D-68BD-46D2-8531-136D8326CDF4}|Ups_Downs_API.Web\\Ups_Downs_API.Web.csproj|c:\\users\\super\\it326_project\\ups_downs_api\\ups_downs_api.web\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{13AC501D-68BD-46D2-8531-136D8326CDF4}|Ups_Downs_API.Web\\Ups_Downs_API.Web.csproj|solutionrelative:ups_downs_api.web\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{13AC501D-68BD-46D2-8531-136D8326CDF4}|Ups_Downs_API.Web\\Ups_Downs_API.Web.csproj|c:\\users\\super\\it326_project\\ups_downs_api\\ups_downs_api.web\\components\\pages\\browseposts.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{13AC501D-68BD-46D2-8531-136D8326CDF4}|Ups_Downs_API.Web\\Ups_Downs_API.Web.csproj|solutionrelative:ups_downs_api.web\\components\\pages\\browseposts.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DAEC5AEA-377D-4144-99E7-F359A73D531B}|Library\\Library.csproj|c:\\users\\super\\it326_project\\ups_downs_api\\library\\filterbytext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DAEC5AEA-377D-4144-99E7-F359A73D531B}|Library\\Library.csproj|solutionrelative:library\\filterbytext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DAEC5AEA-377D-4144-99E7-F359A73D531B}|Library\\Library.csproj|c:\\users\\super\\it326_project\\ups_downs_api\\library\\filterbysentiment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DAEC5AEA-377D-4144-99E7-F359A73D531B}|Library\\Library.csproj|solutionrelative:library\\filterbysentiment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DAEC5AEA-377D-4144-99E7-F359A73D531B}|Library\\Library.csproj|c:\\users\\super\\it326_project\\ups_downs_api\\library\\filterbydaytype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DAEC5AEA-377D-4144-99E7-F359A73D531B}|Library\\Library.csproj|solutionrelative:library\\filterbydaytype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|c:\\users\\super\\it326_project\\ups_downs_api\\ups_downs_api.apiservice\\controllers\\viewpostcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AA9C1BA-51A3-4910-9778-6E455E206732}|Ups_Downs_API.ApiService\\Ups_Downs_API.ApiService.csproj|solutionrelative:ups_downs_api.apiservice\\controllers\\viewpostcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -71,168 +51,102 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Ups_Downs_API.Tests",
+              "DocumentMoniker": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Tests\\Ups_Downs_API.Tests.csproj",
+              "RelativeDocumentMoniker": "Ups_Downs_API.Tests\\Ups_Downs_API.Tests.csproj",
+              "ToolTip": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Tests\\Ups_Downs_API.Tests.csproj",
+              "RelativeToolTip": "Ups_Downs_API.Tests\\Ups_Downs_API.Tests.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-05T05:12:34.347Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "WebTests.cs",
+              "DocumentMoniker": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Tests\\WebTests.cs",
+              "RelativeDocumentMoniker": "Ups_Downs_API.Tests\\WebTests.cs",
+              "ToolTip": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Tests\\WebTests.cs",
+              "RelativeToolTip": "Ups_Downs_API.Tests\\WebTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-05T04:44:45.692Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Ups_Downs_API.Tests",
+              "DocumentMoniker": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Tests\\Ups_Downs_API.Tests.csproj",
+              "RelativeDocumentMoniker": "Ups_Downs_API.Tests\\Ups_Downs_API.Tests.csproj",
+              "ToolTip": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Tests\\Ups_Downs_API.Tests.csproj",
+              "RelativeToolTip": "Ups_Downs_API.Tests\\Ups_Downs_API.Tests.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-05T04:33:26.471Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "BrowsePostsTests.cs",
               "DocumentMoniker": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Tests\\BrowsePostsTests.cs",
               "RelativeDocumentMoniker": "Ups_Downs_API.Tests\\BrowsePostsTests.cs",
               "ToolTip": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Tests\\BrowsePostsTests.cs",
               "RelativeToolTip": "Ups_Downs_API.Tests\\BrowsePostsTests.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAiwCMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACgAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-05T03:47:21.761Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "LoginTests.cs",
               "DocumentMoniker": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Tests\\LoginTests.cs",
               "RelativeDocumentMoniker": "Ups_Downs_API.Tests\\LoginTests.cs",
               "ToolTip": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Tests\\LoginTests.cs",
               "RelativeToolTip": "Ups_Downs_API.Tests\\LoginTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAwwCIAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-05T03:41:59.845Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "CreatePostTests.cs",
               "DocumentMoniker": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Tests\\CreatePostTests.cs",
               "RelativeDocumentMoniker": "Ups_Downs_API.Tests\\CreatePostTests.cs",
               "ToolTip": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Tests\\CreatePostTests.cs",
               "RelativeToolTip": "Ups_Downs_API.Tests\\CreatePostTests.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAgwC0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAIwGwAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-05T03:41:44.968Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "HomePageService.cs",
-              "DocumentMoniker": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.ApiService\\Services\\HomePageService.cs",
-              "RelativeDocumentMoniker": "Ups_Downs_API.ApiService\\Services\\HomePageService.cs",
-              "ToolTip": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.ApiService\\Services\\HomePageService.cs",
-              "RelativeToolTip": "Ups_Downs_API.ApiService\\Services\\HomePageService.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAowEwAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T03:20:34.104Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "NavMenu.razor",
-              "DocumentMoniker": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Web\\Components\\Layout\\NavMenu.razor",
-              "RelativeDocumentMoniker": "Ups_Downs_API.Web\\Components\\Layout\\NavMenu.razor",
-              "ToolTip": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Web\\Components\\Layout\\NavMenu.razor",
-              "RelativeToolTip": "Ups_Downs_API.Web\\Components\\Layout\\NavMenu.razor",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-05T02:38:26.18Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "BrowsePosts.razor",
-              "DocumentMoniker": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Web\\Components\\Pages\\BrowsePosts.razor",
-              "RelativeDocumentMoniker": "Ups_Downs_API.Web\\Components\\Pages\\BrowsePosts.razor",
-              "ToolTip": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.Web\\Components\\Pages\\BrowsePosts.razor",
-              "RelativeToolTip": "Ups_Downs_API.Web\\Components\\Pages\\BrowsePosts.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-05T02:37:54.117Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "FilterByText.cs",
-              "DocumentMoniker": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Library\\FilterByText.cs",
-              "RelativeDocumentMoniker": "Library\\FilterByText.cs",
-              "ToolTip": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Library\\FilterByText.cs",
-              "RelativeToolTip": "Library\\FilterByText.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T02:36:19.283Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "FilterBySentiment.cs",
-              "DocumentMoniker": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Library\\FilterBySentiment.cs",
-              "RelativeDocumentMoniker": "Library\\FilterBySentiment.cs",
-              "ToolTip": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Library\\FilterBySentiment.cs",
-              "RelativeToolTip": "Library\\FilterBySentiment.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T02:35:39.17Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "FilterByDayType.cs",
-              "DocumentMoniker": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Library\\FilterByDayType.cs",
-              "RelativeDocumentMoniker": "Library\\FilterByDayType.cs",
-              "ToolTip": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Library\\FilterByDayType.cs",
-              "RelativeToolTip": "Library\\FilterByDayType.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T02:33:56.009Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ViewPostService.cs",
-              "DocumentMoniker": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.ApiService\\Services\\ViewPostService.cs",
-              "RelativeDocumentMoniker": "Ups_Downs_API.ApiService\\Services\\ViewPostService.cs",
-              "ToolTip": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.ApiService\\Services\\ViewPostService.cs",
-              "RelativeToolTip": "Ups_Downs_API.ApiService\\Services\\ViewPostService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T02:18:11.456Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ViewPostController.cs",
-              "DocumentMoniker": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.ApiService\\Controllers\\ViewPostController.cs",
-              "RelativeDocumentMoniker": "Ups_Downs_API.ApiService\\Controllers\\ViewPostController.cs",
-              "ToolTip": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.ApiService\\Controllers\\ViewPostController.cs",
-              "RelativeToolTip": "Ups_Downs_API.ApiService\\Controllers\\ViewPostController.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAgwCcAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T02:18:06.628Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "BrowseService.cs",
               "DocumentMoniker": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.ApiService\\Services\\BrowseService.cs",
               "RelativeDocumentMoniker": "Ups_Downs_API.ApiService\\Services\\BrowseService.cs",
               "ToolTip": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.ApiService\\Services\\BrowseService.cs",
               "RelativeToolTip": "Ups_Downs_API.ApiService\\Services\\BrowseService.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAgwBEAAAA/AAAAAAAAAA==",
+              "ViewState": "AgIAADYAAAAAAAAAAAAowD0AAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-05T01:55:12.87Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "BrowseController.cs",
               "DocumentMoniker": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.ApiService\\Controllers\\BrowseController.cs",
               "RelativeDocumentMoniker": "Ups_Downs_API.ApiService\\Controllers\\BrowseController.cs",
               "ToolTip": "C:\\Users\\super\\IT326_Project\\Ups_Downs_API\\Ups_Downs_API.ApiService\\Controllers\\BrowseController.cs",
               "RelativeToolTip": "Ups_Downs_API.ApiService\\Controllers\\BrowseController.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAgwB8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACoAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-05T01:54:31.42Z",
               "EditorCaption": ""

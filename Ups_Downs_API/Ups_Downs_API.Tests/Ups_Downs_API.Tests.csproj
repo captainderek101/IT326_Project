@@ -18,10 +18,12 @@
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.4" />
+    <PackageReference Include="Moq" Version="4.20.72" />
     <PackageReference Include="MSTest" Version="3.4.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Ups_Downs_API.ApiService\Ups_Downs_API.ApiService.csproj" />
     <ProjectReference Include="..\Ups_Downs_API.AppHost\Ups_Downs_API.AppHost.csproj" />
   </ItemGroup>
 
