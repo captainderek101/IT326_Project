@@ -1,21 +1,17 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Xml.Linq;
 
 namespace Library
 {
     public class CommentObject
     {
-        public required int UserID { get; set; }
-        public required int PostID { get; set; }
-        public required string Content { get; set; }
-
-        public CommentObject()
-        {
-            UserID = 0;
-            PostID = 0;
-            Content = "test comment!";
-        }
-        [SetsRequiredMembers]
+        [Required]
+        public int UserID { get; set; }
+        [Required]
+        public int PostID { get; set; }
+        [Required]
+        public string Content { get; set; }
         public CommentObject(int userID, int postID, string content) =>
             (UserID, PostID, Content) = (userID, postID, content);
     }
