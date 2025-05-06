@@ -77,11 +77,11 @@ namespace Ups_Downs_API.ApiService.Services
                 var connection = (SqlConnection)context.Database.GetDbConnection();
                 var command = new SqlCommand($"IF EXISTS (SELECT * FROM UserPostRatings WHERE userID = @userID AND postID = @postID)" +
                     $" BEGIN" +
-                    $" UPDATE UserPostRatings SET upvote = '@upvote', downvote = '@downvote' WHERE userID = @userID AND postID = @postID" +
+                    $" UPDATE UserPostRatings SET upvote = @upvote, downvote = @downvote WHERE userID = @userID AND postID = @postID" +
                     $" END" +
                     $" ELSE" +
                     $" BEGIN" +
-                    $" INSERT INTO UserPostRatings(userID, postID, upvote, downvote) VALUES(@userID, @postID, '@upvote', '@downvote')" +
+                    $" INSERT INTO UserPostRatings(userID, postID, upvote, downvote) VALUES(@userID, @postID, @upvote, @downvote)" +
                     $" END", connection);
                 command.Parameters.AddWithValue("@userID", obj.UserID);
                 command.Parameters.AddWithValue("@postID", obj.PostID);
@@ -98,7 +98,7 @@ namespace Ups_Downs_API.ApiService.Services
             using (var context = _contextFactory.CreateDbContext())
             {
                 var connection = (SqlConnection)context.Database.GetDbConnection();
-                var command = new SqlCommand($"INSERT INTO Comments(userID, postID, message) VALUES(@userID, @postID, '@content');", connection);
+                var command = new SqlCommand($"INSERT INTO Comments(userID, postID, message) VALUES(@userID, @postID, @content);", connection);
                 command.Parameters.AddWithValue("@userID", obj.UserID);
                 command.Parameters.AddWithValue("@postID", obj.PostID);
                 command.Parameters.AddWithValue("@content", obj.Content);
@@ -115,11 +115,11 @@ namespace Ups_Downs_API.ApiService.Services
                 var connection = (SqlConnection)context.Database.GetDbConnection();
                 var command = new SqlCommand($"IF EXISTS (SELECT * FROM Subscriptions WHERE userID = @userID AND postID = @postID)" +
                     $" BEGIN" +
-                    $" UPDATE Subscriptions SET emailAddress = '@emailAddress' WHERE userID = @userID AND postID = @postID" +
+                    $" UPDATE Subscriptions SET emailAddress = @emailAddress WHERE userID = @userID AND postID = @postID" +
                     $" END" +
                     $" ELSE" +
                     $" BEGIN" +
-                    $" INSERT INTO Subscriptions(userID, postID, emailAddress) VALUES(@userID, @postID, '@emailAddress')" +
+                    $" INSERT INTO Subscriptions(userID, postID, emailAddress) VALUES(@userID, @postID, @emailAddress)" +
                     $" END", connection);
                 command.Parameters.AddWithValue("@userID", obj.UserID);
                 command.Parameters.AddWithValue("@postID", obj.PostID);

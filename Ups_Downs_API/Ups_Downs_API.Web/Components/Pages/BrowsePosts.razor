@@ -5,24 +5,29 @@
 
 <h1>Browse Posts</h1>
 
-<!--Create a dropdown menu--> 
-
-<button class="btn btn-primary" @onclick="RetrievePosts">Retrieve Posts</button>
-
-<p>@returnInfo</p>
+@if (returnInfo == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    for(int i = 0; i < returnInfo.Count; i++) {
+        <a href="https://localhost:7215/view?id=@returnInfo[i].PostID">@returnInfo[i].Content</a>
+        <br />
+    }
+}
 
 @code {
 
     private string filter = "";
 
-    private List<Library.PostObject>? returnInfo;
+    private List<Library.PostObject> returnInfo;
 
     [Inject]
     private HttpClient _httpClient { get; set; }
 
-    private async Task RetrievePosts()
+    protected override async Task OnInitializedAsync()
     {
         returnInfo = await _httpClient.GetFromJsonAsync<List<Library.PostObject>>("https://localhost:7466/browse");
-
     }
 }
