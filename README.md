@@ -28,6 +28,7 @@ For both of these API keys, navigate to the AppHost appsettings.json. Below are 
 4. Select "appsettings.json"
 
 Within the "GoogleCloud" portion, there is a ApiKey and a empty string after, input the API key here. Follow the same logic for the world API section. 
+  
   "GoogleCloud": {
     "ApiKey": "key goes here"
   },
