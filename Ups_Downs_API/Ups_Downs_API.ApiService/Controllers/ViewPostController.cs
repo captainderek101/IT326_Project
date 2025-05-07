@@ -21,9 +21,8 @@ namespace Ups_Downs_API.ApiService.Controllers
             _viewPostService = viewPostService;
         }
 
-        [HttpGet(Name = "view")] //if page has different types of GET or POST requests we need to diversify the call like this
+        [HttpGet(Name = "view")]
         public ActionResult<PostObject> retrievePost_GET([FromQuery(Name = "id")] int postID = 1)
-        // <...? is our expected return value, replace with the object class we need
         // [FromQuery] - FromQuery will bind URL parameters from a HTTP Request to the method parameters
         {
             //validating the model, if model is not valid send a BadRequest - which is 400 and send what the issue was
@@ -37,6 +36,23 @@ namespace Ups_Downs_API.ApiService.Controllers
 
             // this will return status code 200 and the object for retrieval
             return Ok(retrievedPost);
+        }
+
+        [HttpGet("comments", Name = "comments")]
+        public ActionResult<List<CommentObject>> retrieveCommentsForPost_GET([FromQuery(Name = "id")] int postID = 1)
+        // [FromQuery] - FromQuery will bind URL parameters from a HTTP Request to the method parameters
+        {
+            //validating the model, if model is not valid send a BadRequest - which is 400 and send what the issue was
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            //service logic - sends object to method in service.
+            var retrievedComments = _viewPostService.GetComments(postID);
+
+            // this will return status code 200 and the object for retrieval
+            return Ok(retrievedComments);
         }
 
         [HttpPost("report", Name = "report")]

@@ -9,6 +9,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 DROP TABLE IF EXISTS Posts;
+GO
 
 CREATE TABLE [dbo].[Posts](
 	[userID] [int] NOT NULL,
@@ -20,6 +21,10 @@ CREATE TABLE [dbo].[Posts](
 	PRIMARY KEY (postID),
 	FOREIGN KEY (userID) REFERENCES Users(userID)
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Posts] ADD  CONSTRAINT [DF_Posts_lastUpdated]  DEFAULT (getdate()) FOR [lastUpdated]
+GO
 
 INSERT INTO Posts(userID, message) VALUES (1, 'test post');
 GO
