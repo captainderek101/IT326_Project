@@ -23,7 +23,7 @@ namespace Ups_Downs_API.ApiService.Services
             using (var context = _contextFactory.CreateDbContext())
             {
                 var connection = (SqlConnection)context.Database.GetDbConnection();
-                string query = "SELECT userID, postID, message, dayType, sentiment, lastUpdated FROM Posts";
+                string query = "SELECT userID, postID, message, dayType, sentiment, lastUpdated FROM Posts WHERE lastUpdated >= DATEADD(day, -1, GETDATE())";
                 switch(filterType)
                 {
                     case "content":

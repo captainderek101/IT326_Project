@@ -15,7 +15,7 @@ namespace Ups_Downs_API.ApiService.Services
             _contextFactory = contextFactory;
         }
 
-        public object GetPost(int postID)
+        public PostObject GetPost(int postID)
         {
             PostObject obj = new PostObject();
             obj.PostID = postID;
@@ -53,79 +53,141 @@ namespace Ups_Downs_API.ApiService.Services
 
             return obj;
         }
-        public ReportRequest PostReport(ReportRequest obj)
+
+        public List<CommentObject> GetComments(int postID)
         {
+            List<CommentObject> obj = new List<CommentObject>();
+
             using (var context = _contextFactory.CreateDbContext())
             {
                 var connection = (SqlConnection)context.Database.GetDbConnection();
-                var command = new SqlCommand($"IF NOT EXISTS (SELECT * FROM Reports WHERE userID = @userID AND postID = @postID)" +
-                    $" BEGIN" +
-                    $" INSERT INTO Reports(userID, postID) VALUES(@userID, @postID)" +
-                    $" END", connection);
-                command.Parameters.AddWithValue("@userID", obj.UserID);
-                command.Parameters.AddWithValue("@postID", obj.PostID);
+                var command = new SqlCommand($"SELECT userID, postID, message, lastUpdated FROM Comments WHERE postID = @postID;", connection);
+                command.Parameters.AddWithValue("@postID", postID);
                 connection.Open();
-                command.ExecuteNonQuery();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    CommentObject comment = new CommentObject(0, 0, "");
+                    comment.UserID = reader.GetInt32(0);
+                    comment.PostID = reader.GetInt32(1);
+                    if (!reader.IsDBNull(2))
+                    {
+                        comment.Content = reader.GetString(2);
+                    }
+                    obj.Add(comment);
+                }
+                reader.Close();
+            }
+
+            return obj;
+        }
+        public ReportRequest PostReport(ReportRequest obj)
+        {
+            if (obj.UserID != 1)
+            {
+                using (var context = _contextFactory.CreateDbContext())
+                {
+                    var connection = (SqlConnection)context.Database.GetDbConnection();
+                    var command = new SqlCommand($"IF NOT EXISTS (SELECT * FROM Reports WHERE userID = @userID AND postID = @postID)" +
+                        $" BEGIN" +
+                        $" INSERT INTO Reports(userID, postID) VALUES(@userID, @postID)" +
+                        $" END", connection);
+                    command.Parameters.AddWithValue("@userID", obj.UserID);
+                    command.Parameters.AddWithValue("@postID", obj.PostID);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
             }
 
             return obj;
         }
         public VoteRequest PutVote(VoteRequest obj)
         {
-            using (var context = _contextFactory.CreateDbContext())
+            if (obj.UserID != 1)
             {
-                var connection = (SqlConnection)context.Database.GetDbConnection();
-                var command = new SqlCommand($"IF EXISTS (SELECT * FROM UserPostRatings WHERE userID = @userID AND postID = @postID)" +
-                    $" BEGIN" +
-                    $" UPDATE UserPostRatings SET upvote = @upvote, downvote = @downvote WHERE userID = @userID AND postID = @postID" +
-                    $" END" +
-                    $" ELSE" +
-                    $" BEGIN" +
-                    $" INSERT INTO UserPostRatings(userID, postID, upvote, downvote) VALUES(@userID, @postID, @upvote, @downvote)" +
-                    $" END", connection);
-                command.Parameters.AddWithValue("@userID", obj.UserID);
-                command.Parameters.AddWithValue("@postID", obj.PostID);
-                command.Parameters.AddWithValue("@upvote", obj.Upvote);
-                command.Parameters.AddWithValue("@downvote", obj.Downvote);
-                connection.Open();
-                command.ExecuteNonQuery();
+                using (var context = _contextFactory.CreateDbContext())
+                {
+                    var connection = (SqlConnection)context.Database.GetDbConnection();
+                    var command = new SqlCommand($"IF EXISTS (SELECT * FROM UserPostRatings WHERE userID = @userID AND postID = @postID)" +
+                        $" BEGIN" +
+                        $" UPDATE UserPostRatings SET upvote = @upvote, downvote = @downvote WHERE userID = @userID AND postID = @postID" +
+                        $" END" +
+                        $" ELSE" +
+                        $" BEGIN" +
+                        $" INSERT INTO UserPostRatings(userID, postID, upvote, downvote) VALUES(@userID, @postID, @upvote, @downvote)" +
+                        $" END", connection);
+                    command.Parameters.AddWithValue("@userID", obj.UserID);
+                    command.Parameters.AddWithValue("@postID", obj.PostID);
+                    command.Parameters.AddWithValue("@upvote", obj.Upvote);
+                    command.Parameters.AddWithValue("@downvote", obj.Downvote);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
             }
 
             return obj;
         }
         public CommentObject PostComment(CommentObject obj)
         {
-            using (var context = _contextFactory.CreateDbContext())
+            if(obj.UserID != 1)
             {
-                var connection = (SqlConnection)context.Database.GetDbConnection();
-                var command = new SqlCommand($"INSERT INTO Comments(userID, postID, message) VALUES(@userID, @postID, @content);", connection);
-                command.Parameters.AddWithValue("@userID", obj.UserID);
-                command.Parameters.AddWithValue("@postID", obj.PostID);
-                command.Parameters.AddWithValue("@content", obj.Content);
-                connection.Open();
-                command.ExecuteNonQuery();
+                using (var context = _contextFactory.CreateDbContext())
+                {
+                    var connection = (SqlConnection)context.Database.GetDbConnection();
+                    var command = new SqlCommand($"INSERT INTO Comments(userID, postID, message) VALUES(@userID, @postID, @content);", connection);
+                    command.Parameters.AddWithValue("@userID", obj.UserID);
+                    command.Parameters.AddWithValue("@postID", obj.PostID);
+                    command.Parameters.AddWithValue("@content", obj.Content);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
             }
 
             return obj;
         }
         public SubscriptionRequest PostSubscribe(SubscriptionRequest obj)
         {
-            using (var context = _contextFactory.CreateDbContext())
+            if (obj.UserID == 1)
             {
-                var connection = (SqlConnection)context.Database.GetDbConnection();
-                var command = new SqlCommand($"IF EXISTS (SELECT * FROM Subscriptions WHERE userID = @userID AND postID = @postID)" +
-                    $" BEGIN" +
-                    $" UPDATE Subscriptions SET emailAddress = @emailAddress WHERE userID = @userID AND postID = @postID" +
-                    $" END" +
-                    $" ELSE" +
-                    $" BEGIN" +
-                    $" INSERT INTO Subscriptions(userID, postID, emailAddress) VALUES(@userID, @postID, @emailAddress)" +
-                    $" END", connection);
-                command.Parameters.AddWithValue("@userID", obj.UserID);
-                command.Parameters.AddWithValue("@postID", obj.PostID);
-                command.Parameters.AddWithValue("@emailAddress", obj.EmailAddress);
-                connection.Open();
-                command.ExecuteNonQuery();
+                using (var context = _contextFactory.CreateDbContext())
+                {
+                    var connection = (SqlConnection)context.Database.GetDbConnection();
+                    var command = new SqlCommand($"IF EXISTS (SELECT * FROM Subscriptions WHERE userID = @userID AND postID = @postID AND emailAddress = @emailAddress)" +
+                        $" BEGIN" +
+                        $" UPDATE Subscriptions SET active = @active WHERE userID = @userID AND postID = @postID AND emailAddress = @emailAddress" +
+                        $" END" +
+                        $" ELSE" +
+                        $" BEGIN" +
+                        $" INSERT INTO Subscriptions(userID, postID, emailAddress, active) VALUES(@userID, @postID, @emailAddress, @active)" +
+                        $" END", connection);
+                    command.Parameters.AddWithValue("@userID", obj.UserID);
+                    command.Parameters.AddWithValue("@postID", obj.PostID);
+                    command.Parameters.AddWithValue("@emailAddress", obj.EmailAddress);
+                    command.Parameters.AddWithValue("@active", obj.Subscribe);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            else
+            {
+                using (var context = _contextFactory.CreateDbContext())
+                {
+                    var connection = (SqlConnection)context.Database.GetDbConnection();
+                    var command = new SqlCommand($"IF EXISTS (SELECT * FROM Subscriptions WHERE userID = @userID AND postID = @postID AND userID != 1)" +
+                        $" BEGIN" +
+                        $" UPDATE Subscriptions SET emailAddress = @emailAddress, active = @active WHERE userID = @userID AND postID = @postID" +
+                        $" END" +
+                        $" ELSE" +
+                        $" BEGIN" +
+                        $" INSERT INTO Subscriptions(userID, postID, emailAddress, active) VALUES(@userID, @postID, @emailAddress, @active)" +
+                        $" END", connection);
+                    command.Parameters.AddWithValue("@userID", obj.UserID);
+                    command.Parameters.AddWithValue("@postID", obj.PostID);
+                    command.Parameters.AddWithValue("@emailAddress", obj.EmailAddress);
+                    command.Parameters.AddWithValue("@active", obj.Subscribe);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
             }
 
             return obj;
