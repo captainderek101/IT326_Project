@@ -50,6 +50,7 @@ Due to time constraints and the grading basis for this project, the web browser 
 ### Login page
 To reach the login page endpoint, it uses a HTTP POST Request that uses a from body to recieve the json. The endpoint to the login page is https://localhost:7466/login. The Json structure is as follows `{ "Username":"testUsername", "Password":"testPassword" }`. For a successful login, the account you are logging into must exist.
 ### Home page
+https://localhost:7466/Home is the endpoint. It uses a get request to return the quote of the day and articles of the day. 
 
 ### View Post page
 
