@@ -48,7 +48,7 @@ In Visual Studio, set the "Startup Item" to "Ups_Downs_Api.AppHost" and click ru
 Due to time constraints and the grading basis for this project, the web browser client of this website is in some parts buggy and incomplete. Therefore we have provided all of the API calls that make up the functionality of our website in the sections below. It is recommended to explore the webpages before using the API calls since that was the intended medium by which our product would have been used.
 
 ### Login page
-To reach the login page endpoint, it uses a HTTP POST Request that uses a from body to recieve the json. The endpoint to the login page is https://localhost:7466/login. The Json structure is as follows `{ "Username":"testUsername", "Password":"testPassword" }`. For a successful login, the account you are logging into must exist.
+To reach the login page endpoint, it uses a HTTP POST Request that uses a from body to recieve the json. The endpoint to the login page is https://localhost:7466/login. The Json structure is as follows `{ "Username":"testUsername", "Password":"testPassword" }`. For a successful login, the account you are logging into must exist. To Create an account it is a POST Request at the end point https://localhost:7466/login/create using the same json structure. The edit account feature uses a POST Request at the end point https://localhost:7466/login/edit using the json structure `{ "Username":"testUsername", "Password":"testPassword", "Email":"testEmail" }`
 ### Home page
 https://localhost:7466/Home is the endpoint. It uses a get request to return the quote of the day and articles of the day. 
 
