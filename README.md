@@ -57,22 +57,27 @@ https://localhost:7466/view?id=6
 - Gets a post.
 - Request Type: GET
 - Required Query Parameters: id
+
 https://localhost:7466/view/comments?id=6
 - Gets comments on a post.
 - Request Type: GET
 - Required Query Parameters: id
+
 https://localhost:7466/view/report
 - Reports a post.
 - Request Type: POST
 - JSON Structure: `{ "userid": 1, "postid": 1 }`
+
 https://localhost:7466/view/comment
 - Comments on a post.
 - Request Type: POST
 - JSON Structure: `{ "userid": 1, "postid": 1, "content": "test" }`
+
 https://localhost:7466/view/subscribe
 - Subscribes/unsubscribes to a post.
 - Request Type: POST
 - JSON Structure: `{ "userid": 1, "postid": 1, "emailaddress": "test@test.com", "subscribe": true }`
+
 https://localhost:7466/view/vote
 - Upvotes/downvotes a post.
 - Request Type: PUT
@@ -93,6 +98,7 @@ Do note, the sentiment score has a range of 1 to -1, changing the value in the J
 https://localhost:7466/browse
 - Gets posts from the last 24 hours.
 - Request Type: GET
+
 https://localhost:7466/browse/filter?filterType=content&filterValue=test
 - Gets posts from the last 24 hours, with a filter applied.
 - Request Type: GET
