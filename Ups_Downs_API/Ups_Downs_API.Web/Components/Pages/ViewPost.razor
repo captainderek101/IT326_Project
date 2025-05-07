@@ -1,6 +1,7 @@
 ﻿@page "/view"
 @rendermode InteractiveServer
 @inject HttpClient Http
+@inject IJSRuntime JS
 @using Library
 @using System.Net.Http.Json
 @using System.Text.Json
@@ -11,10 +12,15 @@
 }
 else
 {
+    <p>Author ID: @post.UserID</p>
+    <p>Day Type: @post.DayType</p>
+    <p>Sentiment: @post.Sentiment</p>
     <p>@post.Content</p>
 }
 
 <button class="btn btn-primary" @onclick="CallReport_POST">Report Post</button>
+
+<button class="btn btn-primary" @onclick="CopyToClipboard">Share Post</button>
 
 <form @onsubmit="CallSubscribe_POST">
     <label for="email">Email Address:</label>
@@ -30,7 +36,18 @@ else
     <input type="text" @bind="commentContents"><br><br>
     <input type="submit" value="Submit">
 </form>
-
+<script>
+    window.clipboardCopy = {
+        copyText: function(text) {
+            navigator.clipboard.writeText(text).then(function () {
+                alert("Copied to clipboard!");
+            })
+            .catch(function (error) {
+                alert(error);
+            });
+        }
+    };
+</script>
 @code {
     [Inject]
     private HttpClient _httpClient { get; set; }
@@ -43,7 +60,24 @@ else
 
     private string emailAddress = "";
     private string commentContents = "";
+    public Library.User User = null;
 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var UserJson = await JS.InvokeAsync<string>("sessionStorage.getItem", "user");
+
+            if (!string.IsNullOrEmpty(UserJson))
+            {
+                User = System.Text.Json.JsonSerializer.Deserialize<Library.User>(UserJson);
+            }
+            else
+            {
+                User = null;
+            }
+        }
+    }
     protected override async Task OnInitializedAsync()
     {
         if (Id.HasValue)
@@ -58,57 +92,93 @@ else
 
     private async Task CallReport_POST()
     {
-        //create an object
-        var myObject = new Library.ReportRequest(1, 1);
+        if (Id.HasValue)
+        {
+            //create an object
+            var myObject = new Library.ReportRequest(1, Id.Value);
 
-        //add logic to populate the object
+            //add logic to populate the object
+            if (User != null)
+            {
+                myObject.UserID = User.UserID;
+            }
 
-
-        // Send the POST request with the object
-        //PostAsJsonAsync will serialize the object to JSON for you
-        var response = await _httpClient.PostAsJsonAsync<Library.ReportRequest>("https://localhost:7466/view/report", myObject);
-        var rawContent = await response.Content.ReadAsStringAsync();
+            // Send the POST request with the object
+            //PostAsJsonAsync will serialize the object to JSON for you
+            var response = await _httpClient.PostAsJsonAsync<Library.ReportRequest>("https://localhost:7466/view/report", myObject);
+            var rawContent = await response.Content.ReadAsStringAsync();
+        }
     }
 
     private async Task CallVote_PUT(bool upvote, bool downvote)
     {
-        //create an object
-        var myObject = new Library.VoteRequest(1, 1, upvote, downvote);
+        if (Id.HasValue)
+        {
+            //create an object
+            var myObject = new Library.VoteRequest(1, Id.Value, upvote, downvote);
 
-        //add logic to populate the object
+            //add logic to populate the object
+            if (User != null)
+            {
+                myObject.UserID = User.UserID;
+            }
 
-
-        // Send the POST request with the object
-        //PostAsJsonAsync will serialize the object to JSON for you
-        var response = await _httpClient.PutAsJsonAsync<Library.VoteRequest>("https://localhost:7466/view/vote", myObject);
-        var rawContent = await response.Content.ReadAsStringAsync();
+            // Send the POST request with the object
+            //PostAsJsonAsync will serialize the object to JSON for you
+            var response = await _httpClient.PutAsJsonAsync<Library.VoteRequest>("https://localhost:7466/view/vote", myObject);
+            var rawContent = await response.Content.ReadAsStringAsync();
+        }
     }
 
     private async Task CallComment_POST()
     {
-        //create an object
-        var myObject = new Library.CommentObject(1, 1, commentContents);
+        if (Id.HasValue)
+        {
+            //create an object
+            var myObject = new Library.CommentObject(1, Id.Value, commentContents);
 
-        //add logic to populate the object
+            //add logic to populate the object
+            if(User != null) 
+            {
+                myObject.UserID = User.UserID;
+            }
 
-
-        // Send the POST request with the object
-        //PostAsJsonAsync will serialize the object to JSON for you
-        var response = await _httpClient.PostAsJsonAsync<Library.CommentObject>("https://localhost:7466/view/comment", myObject);
-        var rawContent = await response.Content.ReadAsStringAsync();
+            // Send the POST request with the object
+            //PostAsJsonAsync will serialize the object to JSON for you
+            var response = await _httpClient.PostAsJsonAsync<Library.CommentObject>("https://localhost:7466/view/comment", myObject);
+            var rawContent = await response.Content.ReadAsStringAsync();
+        }
     }
 
     private async Task CallSubscribe_POST()
     {
-        //create an object
-        var myObject = new Library.SubscriptionRequest(1, 1, emailAddress, true);
+        if (Id.HasValue)
+        {
+            //create an object
+            var myObject = new Library.SubscriptionRequest(1, Id.Value, emailAddress, true);
 
-        //add logic to populate the object
+            //add logic to populate the object
+            if (User != null)
+            {
+                myObject.UserID = User.UserID;
+            }
 
+            // Send the POST request with the object
+            //PostAsJsonAsync will serialize the object to JSON for you
+            var response = await _httpClient.PostAsJsonAsync<Library.SubscriptionRequest>("https://localhost:7466/view/subscribe", myObject);
+            var rawContent = await response.Content.ReadAsStringAsync();
+        }
+    }
 
-        // Send the POST request with the object
-        //PostAsJsonAsync will serialize the object to JSON for you
-        var response = await _httpClient.PostAsJsonAsync<Library.SubscriptionRequest>("https://localhost:7466/view/subscribe", myObject);
-        var rawContent = await response.Content.ReadAsStringAsync();
+    private async void CopyToClipboard()
+    {
+        if (Id.HasValue)
+        {
+            await JS.InvokeVoidAsync("clipboardCopy.copyText", $"https://localhost:7215/view?id={Id.Value}");
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("clipboardCopy.copyText", $"https://localhost:7215/view");
+        }
     }
 }

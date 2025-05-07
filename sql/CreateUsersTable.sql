@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS Users;
 
 CREATE TABLE [dbo].[Users](
 	[userID] [int] IDENTITY(1,1) NOT NULL,
-	[username] [nvarchar](50) NOT NULL,
+	[username] [nvarchar](50) NOT NULL UNIQUE,
 	[passwordHash] [nvarchar](max) NOT NULL,
 	[emailAddress] [nvarchar](max) NULL,
 	PRIMARY KEY (userID)
