@@ -16,12 +16,14 @@ namespace Ups_Downs_API.ApiService.Services
     public class HomePageService
     {
         private readonly IDbContextFactory<ApplicationDbContext> _contextFactory;
+        private readonly IConfiguration _config;
 
-
-        // Constructor Injection
-        public HomePageService(IDbContextFactory<ApplicationDbContext> contextFactory)
+        public HomePageService(
+            IDbContextFactory<ApplicationDbContext> contextFactory,
+            IConfiguration config)
         {
             _contextFactory = contextFactory;
+            _config = config;
         }
 
         public CurrentEvents getCurrentEvents()
@@ -74,7 +76,7 @@ namespace Ups_Downs_API.ApiService.Services
                     command.ExecuteNonQuery();
 
                     // Insert world news api key here!
-                    string apiKey = "2d93279549b143a99363d2c75aa1de95";
+                    string apiKey = _config["WorldNewsApi:ApiKey"];   // pulled from config/env/secret
                     // Copied shamelessly from the exapmle given
                     Configuration config = new Configuration();
                     config.BasePath = "https://api.worldnewsapi.com";
