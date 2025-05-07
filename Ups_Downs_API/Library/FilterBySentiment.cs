@@ -13,7 +13,7 @@ namespace Library
 
         public string applyFilter()
         {
-            return $" WHERE sentiment = '{sentimentToInclude}'";
+            return $" AND sentiment = '{sentimentToInclude}'";
         }
     }
 }

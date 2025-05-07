@@ -13,7 +13,7 @@ namespace Library
 
         public string applyFilter()
         {
-            return $" WHERE userID = {userIDToInclude}";
+            return $" AND userID = {userIDToInclude}";
         }
     }
 }

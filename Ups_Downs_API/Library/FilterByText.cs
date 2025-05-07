@@ -13,7 +13,7 @@ namespace Library
 
         public string applyFilter()
         {
-            return $" WHERE message NOT LIKE '%{textToExclude}%'";
+            return $" AND message NOT LIKE '%{textToExclude}%'";
         }
     }
 }

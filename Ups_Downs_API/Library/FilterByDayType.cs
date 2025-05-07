@@ -13,7 +13,7 @@ namespace Library
 
         public string applyFilter()
         {
-            return $" WHERE dayType = '{dayTypeToInclude}'";
+            return $" AND dayType = '{dayTypeToInclude}'";
         }
     }
 }
