@@ -19,11 +19,24 @@ The following Google Document contains instructions on downloading and installin
 Once this setup is done, run the queries contained within the /sql folder in this repository. IMPORTANT NOTE: The "CreateUsersTable.sql" file should be run first, followed by "CreatePostsTable.sql", followed by the remaining queries in any order. This is because of Foreign Key constraints.
 
 ### API Keys
-There are 2 external APIs used within this project which require API keys to use: the World News API and the Sentiment Analysis API.
+There are 2 external APIs used within this project which require API keys to use: the World News API and the Sentiment Analysis API. 
 
-For the World News API, locate the getCurrentEvents() method in HomePageService.cs, located in the Services folder of the Ups_Downs_API.ApiService project. Find the string apiKey under the comment reading "Insert world news api key here!" and replace it with your API key. If you are Dr. Rishi Saripalle, we have provided you with the API keys in our Canvas submission comments.
+For both of these API keys, navigate to the AppHost appsettings.json. Below are directions for navigation.
+1. Open Visual Studio
+2. Go to Solution Explorer
+3. Expand "Ups_Downs_API.AppHost"
+4. Select "appsettings.json"
 
-For the Sentiment Analysis API, locate the CreatePost() method in CreatingPost.razor, located in the Components/Pages folder of the Ups_Downs_API.Web project. Find the var score and replace it with your API key. If you are Dr. Rishi Saripalle, we have provided you with the API keys in our Canvas submission comments.
+Within the "GoogleCloud" portion, there is a ApiKey and a empty string after, input the API key here. Follow the same logic for the world API section. 
+  "GoogleCloud": {
+    "ApiKey": "key goes here"
+  },
+  
+  "WorldNewsApi": {
+    "ApiKey": "key goes here"
+  }
+
+If you are Dr. Rishi Saripalle, we have provided you with the API keys in our Canvas submission comments.
 
 ### Running the website
 Verify that the Database has been set up with all of the required tables and the project has been set up with the correct connection string for the Database. Verify that the API keys have been inserted into the project. If you have done these steps, you are ready to run the project!
