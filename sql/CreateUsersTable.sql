@@ -20,7 +20,11 @@ CREATE TABLE [dbo].[Users](
 
 SET IDENTITY_INSERT Users ON
 
-INSERT INTO Users(userID, username, passwordHash) VALUES (1, 'anonymous', 'test');
+INSERT INTO Users(userID, username, passwordHash) VALUES 
+	(1, 'anonymous', 'test'),
+	(2, 'derek', 'test'),
+	(3, 'joey', 'test'),
+	(4, 'random guy', 'test');
 
 SET IDENTITY_INSERT Users OFF
 GO

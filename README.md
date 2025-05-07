@@ -53,6 +53,30 @@ To reach the login page endpoint, it uses a HTTP POST Request that uses a from b
 https://localhost:7466/Home is the endpoint. It uses a get request to return the quote of the day and articles of the day. 
 
 ### View Post page
+https://localhost:7466/view?id=6
+- Gets a post.
+- Request Type: GET
+- Required Query Parameters: id
+https://localhost:7466/view/comments?id=6
+- Gets comments on a post.
+- Request Type: GET
+- Required Query Parameters: id
+https://localhost:7466/view/report
+- Reports a post.
+- Request Type: POST
+- JSON Structure: `{ "userid": 1, "postid": 1 }`
+https://localhost:7466/view/comment
+- Comments on a post.
+- Request Type: POST
+- JSON Structure: `{ "userid": 1, "postid": 1, "content": "test" }`
+https://localhost:7466/view/subscribe
+- Subscribes/unsubscribes to a post.
+- Request Type: POST
+- JSON Structure: `{ "userid": 1, "postid": 1, "emailaddress": "test@test.com", "subscribe": true }`
+https://localhost:7466/view/vote
+- Upvotes/downvotes a post.
+- Request Type: PUT
+- JSON Structure: `{ "userid": 1, "postid": 1, "upvote": true, "downvote": false }`
 
 ### Create Post page
 The creating post endpoint utilizes HTTP POST Request. It uses the body of the JSON filled with respective parameters, specific parameters are required to be filled with information where others don't require these parameters. 
@@ -66,3 +90,10 @@ Sucessful post creations require a day type to be entered, content to be entered
 Do note, the sentiment score has a range of 1 to -1, changing the value in the JSON will return an associated word based on a score
 
 ### Browse Posts page
+https://localhost:7466/browse
+- Gets posts from the last 24 hours.
+- Request Type: GET
+https://localhost:7466/browse/filter?filterType=content&filterValue=test
+- Gets posts from the last 24 hours, with a filter applied.
+- Request Type: GET
+- Required Query Parameters: filterType and filterValue

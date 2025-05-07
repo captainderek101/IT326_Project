@@ -26,6 +26,11 @@ GO
 ALTER TABLE [dbo].[Posts] ADD  CONSTRAINT [DF_Posts_lastUpdated]  DEFAULT (getdate()) FOR [lastUpdated]
 GO
 
-INSERT INTO Posts(userID, message) VALUES (1, 'test post');
+INSERT INTO Posts(userID, dayType, sentiment, message) VALUES
+	(1, 'good', 'Happy', 'I had a pretty good day today!'),
+	(2, 'good', 'Neutral', 'Does anyone else wonder why the sky is blue?'),
+	(1, 'bad', 'Upset', 'my sister is so mean to me'),
+	(3, 'good', 'Happy', 'Hey guys whats up'),
+	(4, 'good', 'Neutral', 'yo mama!!!')
 GO
 
