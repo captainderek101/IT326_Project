@@ -48,11 +48,20 @@ In Visual Studio, set the "Startup Item" to "Ups_Downs_Api.AppHost" and click ru
 Due to time constraints and the grading basis for this project, the web browser client of this website is in some parts buggy and incomplete. Therefore we have provided all of the API calls that make up the functionality of our website in the sections below. It is recommended to explore the webpages before using the API calls since that was the intended medium by which our product would have been used.
 
 ### Login page
-To reach the login page endpoint, it uses a HTTP POST Request that uses a from body to recieve the json. The endpoint to the login page is https://localhost:7466/login. The Json structure is as follows `{ "Username":"testUsername", "Password":"testPassword" }`. For a seccessful login, the account you are loging into must exist.
+To reach the login page endpoint, it uses a HTTP POST Request that uses a from body to recieve the json. The endpoint to the login page is https://localhost:7466/login. The Json structure is as follows `{ "Username":"testUsername", "Password":"testPassword" }`. For a successful login, the account you are logging into must exist.
 ### Home page
 
 ### View Post page
 
 ### Create Post page
+The creating post endpoint utilizes HTTP POST Request. It uses the body of the JSON filled with respective parameters, specific parameters are required to be filled with information where others don't require these parameters. 
+
+Endpoint: https://localhost:7466/creatingPost/Creation
+JSON structure file:
+    {"PostId": 1, "PostDayType": "good", "PostTimestamp": "00:00", "UserId": 1,"Content": "I am super happy!", "SentimentScore": 0}
+	
+Sucessful post creations require a day type to be entered, content to be entered, a valid timestamp, and a user ID of greater than or equal to 1.
+
+Do note, the sentiment score has a range of 1 to -1, changing the value in the JSON will return an associated word based on a score
 
 ### Browse Posts page
